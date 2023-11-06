@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 require("dotenv").config();
 require("express-async-errors");
 const express = require("express");
@@ -25,5 +24,3 @@ app.use("/api/playlists/", playListRoutes);
 app.use("/api/", searchRoutes);
 
 module.exports = app;
-=======
->>>>>>> parent of b16ac6a (commit)
