@@ -11,14 +11,14 @@ function LeftMain({ clicked, setClickedItem }) {
         setClicked={setClickedItem}
         currentClicked={clicked}
       />
-      <ColumnItem
+      {/* <ColumnItem
         id="2"
         imageSrc="./images/microphone/1.svg"
         ItemName="Podcasts"
         onClickImage="./images/microphone/2.svg"
         setClicked={setClickedItem}
         currentClicked={clicked}
-      />
+      /> */}
       <ColumnItem
         id="3"
         imageSrc="./images/explore/1.svg"

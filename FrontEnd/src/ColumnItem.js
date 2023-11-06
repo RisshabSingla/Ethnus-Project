@@ -8,7 +8,7 @@ function ColumnItem({
   setClicked,
   currentClicked,
 }) {
-  const originalClassName = "flex items-center w-full hover:bg-blue-800 p-3";
+  const originalClassName = "flex items-center w-full  p-3 rounded-xl";
   const originalTextColor = "text-orange-100";
   const [svgSource, setSvgSource] = useState(imageSrc);
   const [divClassName, setDivClassName] = useState(originalClassName);
@@ -17,7 +17,7 @@ function ColumnItem({
   function onClick() {
     setClicked(id);
     console.log(`${ItemName} Pressed`);
-    const className = divClassName + " bg-blue-800";
+    const className = divClassName;
     setDivClassName(className);
     setSvgSource(onClickImage);
   }
@@ -37,14 +37,13 @@ function ColumnItem({
   ItemName = ItemName.substr(0, 1).toUpperCase() + ItemName.substr(1);
   return (
     <div className={divClassName}>
-      <button
-        onClick={onClick}
-        className="flex items-center w-full  hover:bg-blue-800"
-      >
+      <button onClick={onClick} className="flex items-center w-full">
         <div className="flex items-center pl-3 mx-3 cursor-pointer">
           <img width="35px" src={svgSource} alt="" />
           <div className="hidden min-[940px]:flex">
-            <div className={`font-bold font-serif pl-3.5 text-lg ${textColor}`}>
+            <div
+              className={`hover:text-orange-500 font-bold font-serif pl-3.5 text-lg ${textColor}`}
+            >
               {ItemName}
             </div>
           </div>
