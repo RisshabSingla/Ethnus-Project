@@ -13,7 +13,7 @@ function App() {
         <div className="fixed h-screen">
           <LeftColumn clicked={clicked} setClickedItem={setClickedItem} />
         </div>
-        <div className="ml-[126px] lg:ml-[208px]	 ">
+        <div className="ml-[166px] lg:ml-[208px]	 ">
           <RightColumn />
         </div>
       </div>

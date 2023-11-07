@@ -8,7 +8,8 @@ function ColumnItem({
   setClicked,
   currentClicked,
 }) {
-  const originalClassName = "flex items-center w-full  p-3 rounded-xl";
+  const originalClassName =
+    "flex items-center w-full max-w-[126px] lg: max-w-[208px]  p-3 rounded-xl";
   const originalTextColor = "text-orange-100";
   const [svgSource, setSvgSource] = useState(imageSrc);
   const [divClassName, setDivClassName] = useState(originalClassName);
