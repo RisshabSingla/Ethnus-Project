@@ -1,6 +1,6 @@
 import Logo from "./Logo";
 import LeftMain from "./LeftMain";
-import ColumnItem from "./ColumnItem";
+import ColumnItem from "./components/ColumnItem";
 
 function LeftColumn({ clicked, setClickedItem }) {
   return (

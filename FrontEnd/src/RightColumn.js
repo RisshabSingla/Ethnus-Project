@@ -1,5 +1,5 @@
 import NavBar from "./NavBar";
-import PlayList from "./PlayList";
+import PlayList from "./components/PlayList";
 
 function RightColumn() {
   return (
