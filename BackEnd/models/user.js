@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
   month: { type: String, required: true },
   date: { type: String, required: true },
   year: { type: String, required: true },
+	photo: { type: String},
   likedPodcasts: { type: [String], default: [] },
   playlists: { type: [String], default: [] },
   isAdmin: { type: Boolean, default: false },
@@ -34,6 +35,7 @@ const validate = (user) => {
     date: Joi.string().required(),
     year: Joi.string().required(),
     gender: Joi.string().valid("male", "female", "non-binary").required(),
+    photo: Joi.string(),
   });
   return schema.validate(user);
 };
