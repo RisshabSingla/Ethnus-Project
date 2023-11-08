@@ -1,4 +1,4 @@
-# Ethnus-Project
+<h1 align="center">Ethnus-Project </h1>
 
 ListenUp is a podcasting site made using MERN (MongoDB, Express, React, and Node.js). It is a platform for podcasters to create, publish, and share their podcasts with the world. Listeners can browse and subscribe to podcasts on a variety of topics, including news, entertainment, education, and more.
 
