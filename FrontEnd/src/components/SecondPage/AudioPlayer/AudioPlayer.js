@@ -5,23 +5,8 @@ import DisplayTrack from "./DisplayTrack";
 import ProgressBar from "./ProgressBar";
 
 import "./index.css";
-const tracks = [
-  {
-    title: "Apna Bale Le",
-    src: "./music/1.mp3",
-    author: "Trinix ft Rushawn",
-    thumbnail: "",
-  },
-  {
-    title: "Chaand_Baaliyan",
-    src: "./music/2.mp3",
-    author: "Trinix ft Rushawn",
-    thumbnail: "./images/3.jpeg",
-  },
-  // ...
-];
 
-function AudioPlayer() {
+function AudioPlayer({ tracks }) {
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [trackIndex, setTrackIndex] = useState(0);

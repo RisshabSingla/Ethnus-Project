@@ -42,7 +42,7 @@ function ExporeGrid() {
 
 function Explore() {
   const [query, setQuery] = useState("");
-  const [found, setFound] = useState(false);
+  const [found, setFound] = useState(true);
   const [fetching, setFetching] = useState(false);
   const [exploreData, setExploreData] = useState([]);
 
@@ -90,11 +90,14 @@ function Explore() {
           <div>
             <div className="font-bold	font-serif text-xl text-slate-100 p-3 mx-3">
               <div>Sorry could not find the requested Podcast</div>
-              <div>Here are some recommendations </div>
             </div>
-            <ExporeGrid />
           </div>
         )}
+
+        <div className="font-bold	font-serif text-xl text-slate-100 p-3 mx-3">
+          <div>Here are some recommendations </div>
+          <ExporeGrid />
+        </div>
 
         <div className="invisible">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse

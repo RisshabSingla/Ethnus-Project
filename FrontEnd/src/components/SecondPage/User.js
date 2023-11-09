@@ -1,6 +1,10 @@
 import DropDown from "./DropDown";
 
-function User({ name, profileImage, isPremium = true }) {
+function User({
+  name,
+  profileImage = "./images/userImage/1.svg",
+  isPremium = true,
+}) {
   return (
     <div>
       <div className="flex p-3 text-orange-100">
