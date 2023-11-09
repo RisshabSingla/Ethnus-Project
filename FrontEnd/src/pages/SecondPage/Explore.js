@@ -74,7 +74,7 @@ function Explore() {
         {query === "" ? (
           <ExporeGrid />
         ) : fetching ? (
-          <div className="flex justify-center">
+          <div className="flex justify-center h-screen">
             {/* <BookLoader text="Please Wait..." /> */}
             {/* <XlviLoader boxColors={["#EF4444", "#F59E0B", "#6366F1"]} /> */}
             <WifiLoader
@@ -96,9 +96,12 @@ function Explore() {
           </div>
         )}
 
-        {/* <div className="invisible">
+        <div className="invisible">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
+        </div>
+
+        {/* <div className="invisible">
           amet, consectetur adipiscing elit. Suspendisse ac est tellus. Sed
           ultrices mi ut nisl mollis Lorem ipsum dolor sit amet, consectetur
           ultrices mi ut nisl mollis Lorem ipsum dolor sit amet, consectetur

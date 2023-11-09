@@ -1,7 +1,7 @@
 import Podcast from "../../components/SecondPage/Podcast";
 import Recommendation from "../../components/SecondPage/Recommendation";
 
-function Favourites({ hasFavourites = false }) {
+function Favourites({ hasFavourites = true }) {
   return (
     <div>
       <div className="font-bold	font-serif text-lg   items-center  pl-3 mx-3">

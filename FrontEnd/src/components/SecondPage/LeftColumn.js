@@ -5,7 +5,6 @@ import ColumnItem from "./ColumnItem";
 function LeftColumn({ clicked, setClickedItem }) {
   return (
     <div>
-      <Logo />
       <div className="p-3">
         <div className="font-bold	font-serif text-lg  text-slate-50 text-center ">
           Menu

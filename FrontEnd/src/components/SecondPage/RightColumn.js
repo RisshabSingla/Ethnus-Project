@@ -9,9 +9,6 @@ import LogOut from "../../pages/SecondPage/LogOut";
 function RightColumn({ current }) {
   return (
     <div className="pl-[166px] lg:pl-[208px]">
-      <div className="font-bold font-serif pl-3.5 text-lg text-slate-50 p-1 mt-2">
-        <NavBar />
-      </div>
       <div>
         {current === "1" ? <Home /> : ""}
         {current === "3" ? <Explore /> : ""}

@@ -9,13 +9,13 @@ body {
 }
 
 .audio-player {
-    background: #c1b6bc;
+    background: #462c9a;
 }
 
-.inner {
+/* .inner {
     margin: 0 auto;
     padding: 20px;
-}
+} */
 
 /* audio info */
 .audio-info {
@@ -43,18 +43,17 @@ body {
 }
 
 .audio-image {
-
+    border-radius: 3rem;
     background: #1e1e1e;
 }
 
 .audio-icon {
-    font-size: 40px;
+    font-size: 50px;
     display: flex;
+    padding-top: 0.4rem;
     justify-content: center;
     align-items: center;
-
-    border-radius: 50%;
-    background: #989898;
+    color: #1e1e1e;
 }
 
 .audio-image img {
@@ -75,12 +74,13 @@ body {
 .volume button {
     border: none;
     background-color: transparent;
-    margin-right: 8px;
+
     cursor: pointer;
+    padding: 1rem;
 }
 
 button svg {
-    font-size: 20px;
+    font-size: 1.8rem;
 }
 
 .volume {
@@ -89,21 +89,23 @@ button svg {
 }
 
 .volume button {
-    margin: 0;
+
+    margin-left: 2rem;
 }
 
 .progress {
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 100%;
+    width: 80%;
 }
 
 /* time */
 .time {
     color: #333;
-    font-size: 13px;
-    line-height: 46px;
+    font-size: 1.4rem;
+
+    color: #f50;
 }
 
 .time.current {

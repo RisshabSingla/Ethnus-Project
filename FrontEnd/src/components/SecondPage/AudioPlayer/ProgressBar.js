@@ -14,10 +14,11 @@ function ProgressBar({ progressBarRef, audioRef, timeProgress, duration }) {
     return "00:00";
   };
   return (
-    <div>
+    <div className="flex justify-center w-full">
       <div className="progress">
         <span className="time current">{formatTime(timeProgress)}</span>
         <input
+          className="w-4/5"
           type="range"
           ref={progressBarRef}
           defaultValue="0"

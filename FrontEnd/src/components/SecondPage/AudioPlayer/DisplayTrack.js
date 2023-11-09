@@ -23,17 +23,23 @@ function DisplayTrack({
         onEnded={handleNext}
       />
       <div className="audio-info">
-        <div className="audio-image">
-          {currentTrack.thumbnail ? (
-            <img width="50px" src={currentTrack.thumbnail} alt="audio avatar" />
-          ) : (
-            <div className="icon-wrapper">
-              <span className="audio-icon">
-                <BsMusicNoteBeamed />
-              </span>
-            </div>
-          )}
-        </div>
+        {/* audio-image */}
+
+        {currentTrack.thumbnail ? (
+          <img
+            className="rounded-2xl"
+            width="50px"
+            src={currentTrack.thumbnail}
+            alt="audio avatar"
+          />
+        ) : (
+          <div className="icon-wrapper">
+            <span className="audio-icon">
+              <BsMusicNoteBeamed />
+            </span>
+          </div>
+        )}
+
         <div className="text">
           <p className="title">{currentTrack.title}</p>
           <p>{currentTrack.author}</p>

@@ -10,7 +10,7 @@ const tracks = [
     title: "Apna Bale Le",
     src: "./music/1.mp3",
     author: "Trinix ft Rushawn",
-    thumbnail: "./images/3.jpeg",
+    thumbnail: "",
   },
   {
     title: "Chaand_Baaliyan",
@@ -43,9 +43,9 @@ function AudioPlayer() {
 
   return (
     <div className="audio-player w-screen">
-      <div className=" inner">
-        <div className="flex  justify-between">
-          <div className="">
+      <div className="px-3">
+        <div className="flex  w-full flex-row">
+          <div className="basis-1/5 pt-4">
             <DisplayTrack
               currentTrack={currentTrack}
               audioRef={audioRef}
@@ -54,24 +54,32 @@ function AudioPlayer() {
               handleNext={handleNext}
             />
           </div>
-          <Controls
-            audioRef={audioRef}
-            progressBarRef={progressBarRef}
-            duration={duration}
-            setTimeProgress={setTimeProgress}
-            tracks={tracks}
-            setCurrentTrack={setCurrentTrack}
-            trackIndex={trackIndex}
-            setTrackIndex={setTrackIndex}
-            handleNext={handleNext}
-            timeProgress={timeProgress}
-          />
-          <ProgressBar
-            progressBarRef={progressBarRef}
-            timeProgress={timeProgress}
-            audioRef={audioRef}
-            duration={duration}
-          />
+          <div className="basis-4/5">
+            <div className="pb-2">
+              <div className="flex justify-center">
+                <Controls
+                  audioRef={audioRef}
+                  progressBarRef={progressBarRef}
+                  duration={duration}
+                  setTimeProgress={setTimeProgress}
+                  tracks={tracks}
+                  setCurrentTrack={setCurrentTrack}
+                  trackIndex={trackIndex}
+                  setTrackIndex={setTrackIndex}
+                  handleNext={handleNext}
+                  timeProgress={timeProgress}
+                />
+              </div>
+              <div className="flex justify-center ">
+                <ProgressBar
+                  progressBarRef={progressBarRef}
+                  timeProgress={timeProgress}
+                  audioRef={audioRef}
+                  duration={duration}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
