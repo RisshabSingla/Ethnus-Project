@@ -1,4 +1,4 @@
-import ColumnItem from "./components/ColumnItem";
+import ColumnItem from "./ColumnItem";
 
 function LeftMain({ clicked, setClickedItem }) {
   return (
