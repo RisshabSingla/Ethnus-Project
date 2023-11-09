@@ -1,3 +1,4 @@
+import AudioPlayer from "../components/SecondPage/AudioPlayer/AudioPlayer";
 import LeftColumn from "../components/SecondPage/LeftColumn";
 import RightColumn from "../components/SecondPage/RightColumn";
 import { useState } from "react";
@@ -15,6 +16,11 @@ function SecondPage() {
         </div>
         <div>
           <RightColumn current={clicked} />
+        </div>
+      </div>
+      <div className="sticky inset-x-0 bottom-0 p-3 font-bold	font-serif text-lg  text-slate-50 text-center flex justify-center	backdrop-blur-sm">
+        <div>
+          <AudioPlayer />
         </div>
       </div>
     </div>
