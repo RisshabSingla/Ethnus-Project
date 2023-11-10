@@ -1,9 +1,7 @@
 import Podcast from "../../components/SecondPage/Podcast";
 import { useEffect, useState } from "react";
 import "./Explore.css";
-import XlviLoader from "../../components/SecondPage/XlviLoader";
 import WifiLoader from "../../components/SecondPage/wifiLoader";
-// import BookLoader from "../../components/SecondPage/BookLoader";
 
 function Search({ query, setQuery }) {
   return (
@@ -40,9 +38,9 @@ function ExporeGrid() {
   );
 }
 
-function Explore() {
+function Explore({ setTracks }) {
   const [query, setQuery] = useState("");
-  const [found, setFound] = useState(true);
+  const [found, setFound] = useState(false);
   const [fetching, setFetching] = useState(false);
   const [exploreData, setExploreData] = useState([]);
 
@@ -55,10 +53,11 @@ function Explore() {
 
         const data = [];
         setExploreData(data);
-        // setFound(true);
+
         setTimeout(() => {
+          // setFound(true);
           setFetching(false);
-        }, 10000);
+        }, 3000);
       }
       FindPodcasts();
     },
@@ -85,7 +84,13 @@ function Explore() {
             />
           </div>
         ) : found ? (
-          " "
+          exploreData.map((data) => (
+            <Podcast
+              title={data.title}
+              category={data.category}
+              imageSrc={data.imageSrc}
+            />
+          ))
         ) : (
           <div>
             <div className="font-bold	font-serif text-xl text-slate-100 p-3 mx-3">

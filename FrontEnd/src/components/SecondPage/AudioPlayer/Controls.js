@@ -12,6 +12,8 @@ import {
   IoVolumeLow,
 } from "react-icons/io5";
 
+import useScreenSize from "../useScreenSize";
+
 function Controls({
   audioRef,
   progressBarRef,
@@ -31,7 +33,7 @@ function Controls({
     setIsPlaying((prev) => !prev);
   };
   const playAnimationRef = useRef();
-
+  const screenSize = useScreenSize();
   const repeat = useCallback(() => {
     // console.log("run");
     const currentTime = audioRef.current.currentTime;
@@ -111,13 +113,19 @@ function Controls({
             <IoVolumeHigh />
           )}
         </button>
-        <input
-          type="range"
-          min={0}
-          max={100}
-          value={volume}
-          onChange={(e) => setVolume(e.target.value)}
-        />
+        {screenSize.width > 650 ? (
+          <input
+            className="volButton"
+            type="range"
+            orient="vertical"
+            min={0}
+            max={100}
+            value={volume}
+            onChange={(e) => setVolume(e.target.value)}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

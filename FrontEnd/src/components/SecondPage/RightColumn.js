@@ -1,4 +1,3 @@
-import NavBar from "./NavBar";
 import Home from "../../pages/SecondPage/Home";
 import Explore from "../../pages/SecondPage/Explore";
 import Favourites from "../../pages/SecondPage/Favourites";
@@ -6,13 +5,17 @@ import Setting from "../../pages/SecondPage/Setting";
 import Subscribe from "../../pages/SecondPage/Subscribe";
 import LogOut from "../../pages/SecondPage/LogOut";
 
-function RightColumn({ current }) {
+function RightColumn({ current, setCurrPlaying, currPlaying }) {
   return (
     <div className="pl-[166px] lg:pl-[208px]">
       <div>
-        {current === "1" ? <Home /> : ""}
-        {current === "3" ? <Explore /> : ""}
-        {current === "4" ? <Favourites /> : ""}
+        {current === "1" ? (
+          <Home setCurrPlaying={setCurrPlaying} currPlaying={currPlaying} />
+        ) : (
+          ""
+        )}
+        {current === "3" ? <Explore setCurrPlaying={setCurrPlaying} /> : ""}
+        {current === "4" ? <Favourites setCurrPlaying={setCurrPlaying} /> : ""}
         {current === "5" ? <Setting /> : ""}
         {current === "6" ? <Subscribe /> : ""}
         {current === "7" ? <LogOut /> : ""}

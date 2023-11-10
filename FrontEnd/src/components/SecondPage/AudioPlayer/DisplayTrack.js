@@ -1,5 +1,5 @@
 import { BsMusicNoteBeamed } from "react-icons/bs";
-
+import useScreenSize from "../useScreenSize";
 function DisplayTrack({
   currentTrack,
   audioRef,
@@ -13,37 +13,44 @@ function DisplayTrack({
     setDuration(seconds);
     progressBarRef.current.max = seconds;
   };
-
+  const screenSize = useScreenSize();
+  // console.log(screenSize);
   return (
     <div>
       <audio
-        src={currentTrack.src}
+        src={currentTrack?.podcast ? currentTrack?.podcast : " "}
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadata}
         onEnded={handleNext}
       />
-      <div className="audio-info">
-        {/* audio-image */}
-
-        {currentTrack.thumbnail ? (
-          <img
-            className="rounded-2xl"
-            width="50px"
-            src={currentTrack.thumbnail}
-            alt="audio avatar"
-          />
-        ) : (
-          <div className="icon-wrapper">
-            <span className="audio-icon">
-              <BsMusicNoteBeamed />
-            </span>
-          </div>
-        )}
-
-        <div className="text">
-          <p className="title">{currentTrack.title}</p>
-          <p>{currentTrack.author}</p>
+      <div className="audio-info flex justify-center">
+        <div className="pl-2 md:pl-0 min-w-[50px] ">
+          {currentTrack?.img ? (
+            <img
+              className="rounded-2xl"
+              width="50px"
+              src={currentTrack.img}
+              alt="audio avatar"
+            />
+          ) : (
+            <div className="icon-wrapper">
+              <span className="audio-icon">
+                <BsMusicNoteBeamed />
+              </span>
+            </div>
+          )}
         </div>
+
+        {screenSize.width > 900 ? (
+          <div>
+            <div className="text">
+              <p className="title">{currentTrack?.name}</p>
+              <p>{currentTrack?.artist}</p>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

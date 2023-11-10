@@ -14,6 +14,7 @@ function AudioPlayer({ tracks }) {
   const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex]);
 
   const audioRef = useRef();
+  // console.log(audioRef);
   const progressBarRef = useRef();
 
   const handleNext = () => {
@@ -30,7 +31,7 @@ function AudioPlayer({ tracks }) {
     <div className="audio-player w-screen">
       <div className="px-3">
         <div className="flex  w-full flex-row">
-          <div className="basis-1/5 pt-4">
+          <div className="basis-1/12 md:basis-1/5 pt-4">
             <DisplayTrack
               currentTrack={currentTrack}
               audioRef={audioRef}
@@ -39,7 +40,7 @@ function AudioPlayer({ tracks }) {
               handleNext={handleNext}
             />
           </div>
-          <div className="basis-4/5">
+          <div className="basis-11/12 md:basis-4/5">
             <div className="pb-2">
               <div className="flex justify-center">
                 <Controls
