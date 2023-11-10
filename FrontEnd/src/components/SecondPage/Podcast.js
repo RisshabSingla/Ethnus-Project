@@ -6,6 +6,7 @@ function Podcast({
   currPlaying,
   trackIndex,
   setTrackIndex,
+  setIsPlaying,
 }) {
   const [addQueue, setAddQueue] = useState(false);
   const [addFront, setAddFront] = useState(false);
@@ -28,7 +29,10 @@ function Podcast({
       if (currPlaying.length === 0) {
         setCurrPlaying([track]);
       }
-      setTrackIndex(0);
+      setTimeout(() => {
+        setTrackIndex(0);
+        setIsPlaying(true);
+      }, 100);
     }
   }
 
@@ -38,9 +42,9 @@ function Podcast({
 
   return (
     <>
-      <div className=" p-4 flex-shrink-0 font-bold font-serif text-lg border rounded-3xl text-left m-3">
+      <div className=" p-4 flex-shrink-0 font-bold font-serif text-lg border rounded-3xl text-left m-3   ">
         <img
-          className="rounded-3xl border-2 m-3"
+          className="rounded-3xl border-2 m-3 min-w-[150px] min-h-[150px] max-h-[150px]"
           width="150px"
           height="150px"
           src={track?.img ? track.img : "./images/3.jpeg"}

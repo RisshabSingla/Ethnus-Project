@@ -9,6 +9,7 @@ function Home({
   currPlaying,
   trackIndex,
   setTrackIndex,
+  setIsPlaying,
 }) {
   return (
     <div>
@@ -21,6 +22,7 @@ function Home({
               currPlaying={currPlaying}
               trackIndex={trackIndex}
               setTrackIndex={setTrackIndex}
+              setIsPlaying={setIsPlaying}
             />
           </div>
 

@@ -14,8 +14,51 @@ import ins from "../imags/instagram.png";
 import flogo from "../imags/flogo.png";
 import { Link as RouterLink } from "react-router-dom";
 
-function LoginPage() {
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+
+function LoginPage({ setLoggedInUser }) {
+  const navigate = useNavigate();
   const [nav, setNav] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageClassName, setMessageClassName] = useState("mb-4 pb-4 hidden");
+
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleChange(e) {
+    const { id, value } = e.target;
+    // console.log(id, " ", value);
+    setMessage("");
+    setMessageClassName("mb-4 pb-4 hidden");
+    setUser({
+      ...user,
+      [id]: value,
+    });
+  }
+
+  function handleLoginUser(e) {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8080/api/login", user)
+      .then((res) => {
+        // console.log(res);
+        setLoggedInUser(res.data.data);
+        setMessage("Login Successful");
+        setMessageClassName("mb-4 pb-4");
+        navigate("/dashboard");
+        // <Navigate replace to="/dashboard" />;
+      })
+      .catch((res) => {
+        // console.log(res);
+        setMessage(res.response.data.message);
+        setMessageClassName("mb-4 pb-4 ");
+      });
+  }
+
   return (
     <div>
       <div className="flex justify-between items-center w-full h-20  bg-gradient-to-r from-blue-950 to bg-neutral-950 fixed px-4  top-0 ">
@@ -127,7 +170,7 @@ function LoginPage() {
             <p className="text-xl pl-10 text-center ">
               Your Ultimate Podcast Destination!
             </p>
-            <p class="mt-20 text-2xl text-orange ml-10 text-center">
+            <p className="mt-20 text-2xl text-orange ml-10 text-center">
               Experience the future of audio entertainment with ListenUp.
             </p>
           </div>
@@ -145,6 +188,8 @@ function LoginPage() {
                     required
                     type="email"
                     id="email"
+                    value={user.email}
+                    onChange={handleChange}
                     className=" hover:scale-105 duration-200 w-full p-2 border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950"
                     placeholder="Enter your email"
                   />
@@ -155,14 +200,24 @@ function LoginPage() {
                     type="password"
                     id="password"
                     name="password"
+                    value={user.password}
+                    onChange={handleChange}
                     className="hover:scale-105 duration-200 w-full p-2 border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950"
                     placeholder="Enter your password"
                   />
+                </div>
+                <div className={messageClassName}>
+                  <center>
+                    <label className=" hover:scale-105 duration-200 w-full  border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950 text-center	">
+                      {message}
+                    </label>
+                  </center>
                 </div>
                 <center>
                   <button
                     type="submit"
                     className="w-1/2   text-center  hover:scale-105 duration-200 bg-blue-500 text-white p-2 mt-3 rounded-md hover:bg-orange-700 hover:text-cyan-300 font-bold focus:outline-none"
+                    onClick={handleLoginUser}
                   >
                     Sign In
                   </button>
@@ -343,7 +398,7 @@ function LoginPage() {
       <footer className="bg-black  text-orange-100 pt-4">
         <div className=" mx-auto text-center">
           <div className="sm:flex justify-between">
-            <div className="w-1/4 h-1/4">
+            <div className="pl-3 w-1/4 h-1/4">
               <img src={flogo} className="w-2/3 h-2/3 "></img>
             </div>
 

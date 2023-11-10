@@ -14,7 +14,7 @@ const Alltracks = [
     name: "Apna Bale Le",
     artist: "Trinix ft Rushawn",
     img: "./images/3.jpeg",
-    podcast: "./music/2.mp3",
+    podcast: "./music/1.mp3",
   },
   {
     name: "Chaand_Baaliyan",
@@ -53,6 +53,7 @@ function Top10Charts({
   currPlaying,
   trackIndex,
   setTrackIndex,
+  setIsPlaying,
 }) {
   // sm:min-w-[300px] md:min-w-[500px] lg:min-w-[700px] xl:min-w-[1000px]
   // sm:min-w-[300px] min-[730px]:min-w-[500px]  min-[920px]:min-w-[700px] xl:min-w-[1000px]
@@ -80,6 +81,7 @@ function Top10Charts({
             currPlaying={currPlaying}
             trackIndex={trackIndex}
             setTrackIndex={setTrackIndex}
+            setIsPlaying={setIsPlaying}
           />
         ))}
 

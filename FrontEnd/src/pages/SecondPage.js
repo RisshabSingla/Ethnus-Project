@@ -46,12 +46,11 @@ import { useState } from "react";
 //   // ...
 // ];
 
-function SecondPage() {
+function SecondPage({ loggedInUser }) {
   const [clicked, setClicked] = useState("1");
-  // const [tracks, setTracks] = useState(Alltracks);
   const [currPlaying, setCurrPlaying] = useState([]);
   const [trackIndex, setTrackIndex] = useState(0);
-
+  const [isPlaying, setIsPlaying] = useState(false);
   function setClickedItem(id) {
     setClicked(id);
   }
@@ -69,20 +68,19 @@ function SecondPage() {
             currPlaying={currPlaying}
             trackIndex={trackIndex}
             setTrackIndex={setTrackIndex}
+            setIsPlaying={setIsPlaying}
           />
         </div>
       </div>
       <div className="sticky inset-x-0 bottom-0 font-bold	font-serif text-lg  text-slate-50 text-center flex justify-center	backdrop-blur-sm">
         <div className={currPlaying.length === 0 ? "hidden" : ""}>
-          {/* {currPlaying.length === 0 ? (
-            " "
-          ) : ( */}
           <AudioPlayer
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
             tracks={currPlaying}
             trackIndex={trackIndex}
             setTrackIndex={setTrackIndex}
           />
-          {/* )} */}
         </div>
       </div>
     </div>

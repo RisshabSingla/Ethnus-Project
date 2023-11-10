@@ -6,7 +6,13 @@ import ProgressBar from "./ProgressBar";
 
 import "./index.css";
 
-function AudioPlayer({ tracks, trackIndex, setTrackIndex }) {
+function AudioPlayer({
+  tracks,
+  trackIndex,
+  setTrackIndex,
+  isPlaying,
+  setIsPlaying,
+}) {
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
 
@@ -44,6 +50,8 @@ function AudioPlayer({ tracks, trackIndex, setTrackIndex }) {
             <div className="pb-2">
               <div className="flex justify-center">
                 <Controls
+                  isPlaying={isPlaying}
+                  setIsPlaying={setIsPlaying}
                   audioRef={audioRef}
                   progressBarRef={progressBarRef}
                   duration={duration}

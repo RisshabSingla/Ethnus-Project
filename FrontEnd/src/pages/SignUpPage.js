@@ -13,9 +13,58 @@ import lin from "../imags/linkedin.png";
 import ins from "../imags/instagram.png";
 import flogo from "../imags/flogo.png";
 import { Link as RouterLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
 
 function SignUp() {
+  const navigate = useNavigate();
   const [nav, setNav] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageClassName, setMessageClassName] = useState("mb-4 pb-4 hidden");
+
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    gender: "",
+  });
+
+  function handleChange(e) {
+    const { id, value } = e.target;
+    setMessage("");
+    setMessageClassName("mb-4 pb-4 hidden");
+    // console.log(id, " ", value);
+    setUser({
+      ...user,
+      [id]: value,
+    });
+  }
+
+  function handleRegisterUser(e) {
+    e.preventDefault();
+    const now = new Date();
+    const data = {
+      ...user,
+      date: "" + now.getDate(),
+      month: "" + now.getMonth(),
+      year: "" + now.getFullYear(),
+    };
+    // console.log(data);
+    axios
+      .post("http://localhost:8080/api/users", data)
+      .then((res) => {
+        // console.log(res);
+        navigate("/");
+      })
+      .catch((res) => {
+        // console.log(res.response.data.message);
+        setMessage(res.response.data.message);
+        setMessageClassName("mb-4 pb-4 ");
+      });
+  }
+  // console.log(new Date().getFullYear());
+
   return (
     <div>
       <div className="flex justify-between items-center w-full h-20  bg-gradient-to-r from-blue-950 to bg-neutral-950 fixed px-4  top-0 ">
@@ -145,15 +194,49 @@ function SignUp() {
                     required
                     type="Name"
                     id="name"
+                    value={user.name}
+                    onChange={handleChange}
                     className=" hover:scale-105 duration-200 w-full p-2 border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950"
                     placeholder="Enter your Name"
                   />
+                </div>
+                <div className="flex mb-4 pb-4">
+                  <input
+                    required
+                    type="radio"
+                    id="gender"
+                    value="male"
+                    name="gender"
+                    onChange={handleChange}
+                    className=" hover:scale-105 duration-200 w-full  border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950"
+                    placeholder="Enter your Name"
+                  />
+                  <label className=" hover:scale-105 duration-200 w-full  border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950 text-center	">
+                    {" "}
+                    Male
+                  </label>
+                  <input
+                    required
+                    type="radio"
+                    id="gender"
+                    name="gender"
+                    value="female"
+                    onChange={handleChange}
+                    className=" hover:scale-105 duration-200 w-full  border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950"
+                    placeholder="Enter your Name"
+                  />
+                  <label className=" hover:scale-105 duration-200 w-full  border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950 text-center	">
+                    {" "}
+                    Female
+                  </label>
                 </div>
                 <div className="mb-4 pb-4">
                   <input
                     required
                     type="email"
                     id="email"
+                    value={user.email}
+                    onChange={handleChange}
                     className=" hover:scale-105 duration-200 w-full p-2 border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950"
                     placeholder="Enter your email"
                   />
@@ -164,14 +247,24 @@ function SignUp() {
                     type="password"
                     id="password"
                     name="password"
+                    value={user.password}
+                    onChange={handleChange}
                     className="hover:scale-105 duration-200 w-full p-2 border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950"
                     placeholder="Enter your password"
                   />
+                </div>
+                <div className={messageClassName}>
+                  <center>
+                    <label className=" hover:scale-105 duration-200 w-full  border rounded-md focus:outline-none focus:border-blue-500 bg-cyan-100 placeholder:text-slate-700 text-blue-950 text-center	">
+                      {message}
+                    </label>
+                  </center>
                 </div>
                 <center>
                   <button
                     type="submit"
                     className="w-1/2   text-center  hover:scale-105 duration-200 bg-blue-500 text-white p-2 mt-3 rounded-md hover:bg-orange-700 hover:text-cyan-300 font-bold focus:outline-none"
+                    onClick={handleRegisterUser}
                   >
                     Sign Up
                   </button>
@@ -355,7 +448,7 @@ function SignUp() {
       <footer className="bg-black  text-orange-100 pt-4">
         <div className=" mx-auto text-center">
           <div className="sm:flex justify-between">
-            <div className="w-1/4 h-1/4">
+            <div className="pl-3 w-1/4 h-1/4">
               <img src={flogo} className="w-2/3 h-2/3 "></img>
             </div>
 
