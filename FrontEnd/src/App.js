@@ -16,9 +16,6 @@ function App() {
         </Routes>
       </HashRouter>
     </div>
-    // <div>
-    //   < />
-    // </div>
   );
 }
 

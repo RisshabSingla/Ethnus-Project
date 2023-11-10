@@ -48,7 +48,12 @@ const Alltracks = [
   },
 ];
 
-function Top10Charts({ setCurrPlaying, currPlaying }) {
+function Top10Charts({
+  setCurrPlaying,
+  currPlaying,
+  trackIndex,
+  setTrackIndex,
+}) {
   // sm:min-w-[300px] md:min-w-[500px] lg:min-w-[700px] xl:min-w-[1000px]
   // sm:min-w-[300px] min-[730px]:min-w-[500px]  min-[920px]:min-w-[700px] xl:min-w-[1000px]
   return (
@@ -73,6 +78,8 @@ function Top10Charts({ setCurrPlaying, currPlaying }) {
             track={track}
             setCurrPlaying={setCurrPlaying}
             currPlaying={currPlaying}
+            trackIndex={trackIndex}
+            setTrackIndex={setTrackIndex}
           />
         ))}
 

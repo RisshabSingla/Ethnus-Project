@@ -5,12 +5,23 @@ import Setting from "../../pages/SecondPage/Setting";
 import Subscribe from "../../pages/SecondPage/Subscribe";
 import LogOut from "../../pages/SecondPage/LogOut";
 
-function RightColumn({ current, setCurrPlaying, currPlaying }) {
+function RightColumn({
+  current,
+  setCurrPlaying,
+  currPlaying,
+  trackIndex,
+  setTrackIndex,
+}) {
   return (
     <div className="pl-[166px] lg:pl-[208px]">
       <div>
         {current === "1" ? (
-          <Home setCurrPlaying={setCurrPlaying} currPlaying={currPlaying} />
+          <Home
+            setCurrPlaying={setCurrPlaying}
+            currPlaying={currPlaying}
+            trackIndex={trackIndex}
+            setTrackIndex={setTrackIndex}
+          />
         ) : (
           ""
         )}

@@ -1,16 +1,35 @@
 import { useState } from "react";
 
-function Podcast({ track, setCurrPlaying, currPlaying }) {
+function Podcast({
+  track,
+  setCurrPlaying,
+  currPlaying,
+  trackIndex,
+  setTrackIndex,
+}) {
   const [addQueue, setAddQueue] = useState(false);
   const [addFront, setAddFront] = useState(false);
   const [addFavourite, setAddFavourite] = useState(false);
   function handleQueueAdd() {
     setAddQueue(addQueue ? false : true);
-    setCurrPlaying([...currPlaying, track]);
+    if (!addQueue) {
+      setCurrPlaying([...currPlaying, track]);
+    }
+    if (addQueue) {
+      setCurrPlaying(currPlaying.filter((t) => t !== track));
+    }
   }
   function handleFrontAdd() {
     setAddFront(addFront ? false : true);
-    setCurrPlaying([track, ...currPlaying]);
+    if (!addFront) {
+      if (currPlaying.length > 0 && currPlaying[0] !== track) {
+        setCurrPlaying([track, ...currPlaying]);
+      }
+      if (currPlaying.length === 0) {
+        setCurrPlaying([track]);
+      }
+      setTrackIndex(0);
+    }
   }
 
   function handleFavouriteAdd() {
@@ -38,23 +57,23 @@ function Podcast({ track, setCurrPlaying, currPlaying }) {
         <div className="flex justify-center">
           <button className="px-2" onClick={handleFrontAdd}>
             {addFront ? (
-              <img width="50px" src="./images/play/3.svg" />
+              <img width="50px" src="./images/play/3.svg" alt="" />
             ) : (
-              <img width="50px" src="./images/play/1.svg" />
+              <img width="50px" src="./images/play/1.svg" alt="" />
             )}
           </button>
           <button onClick={handleQueueAdd}>
             {addQueue ? (
-              <img width="50px" src="./images/queue/4.svg" />
+              <img width="50px" src="./images/queue/4.svg" alt="" />
             ) : (
-              <img width="50px" src="./images/queue/1.svg" />
+              <img width="50px" src="./images/queue/1.svg" alt="" />
             )}
           </button>
           <button onClick={handleFavouriteAdd}>
             {addFavourite ? (
-              <img width="50px" src="./images/favourite/2.svg" />
+              <img width="50px" src="./images/favourite/2.svg" alt="" />
             ) : (
-              <img width="50px" src="./images/favourite/4.svg" />
+              <img width="50px" src="./images/favourite/4.svg" alt="" />
             )}
           </button>
         </div>

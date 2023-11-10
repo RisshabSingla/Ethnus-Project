@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, { useState } from "react";
 import { Link } from "react-scroll";
 import lg from "../imags/Logo.png";

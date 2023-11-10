@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import Controls from "./Controls";
 import DisplayTrack from "./DisplayTrack";
@@ -6,16 +6,16 @@ import ProgressBar from "./ProgressBar";
 
 import "./index.css";
 
-function AudioPlayer({ tracks }) {
+function AudioPlayer({ tracks, trackIndex, setTrackIndex }) {
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [trackIndex, setTrackIndex] = useState(0);
 
   const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex]);
 
   const audioRef = useRef();
-  // console.log(audioRef);
   const progressBarRef = useRef();
+
+  useEffect(() => setCurrentTrack(tracks[trackIndex]), [tracks, trackIndex]);
 
   const handleNext = () => {
     if (trackIndex >= tracks.length - 1) {
