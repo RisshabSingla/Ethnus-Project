@@ -1,0 +1,18 @@
+.rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+
+
+.rec.rec-slider-container {
+    background-color: #C4C4C4;
+    /* opacity: 75%; */
+    border-radius: 2.5rem;
+}
+
+.rec.rec-pagination {
+    visibility: collapse;
+}
+
+.rec-carousel-item {
+    padding: 0.4rem;
+}

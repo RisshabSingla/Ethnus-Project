@@ -1,17 +1,33 @@
-import LeftColumn from "./LeftColumn";
-import RightColumn from "./RightColumn";
+import React, { useState } from "react";
+import { HashRouter, Routes, Route } from "react-router-dom";
+
+import LoginPage from "./pages/LoginPage";
+import Sign from "./pages/SignUpPage";
+import SecondPage from "./pages/SecondPage";
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState("");
+  // console.log(loggedInUser);
   return (
-    <div className="bg-black">
-      <div className="flex flex-row h-screen gap-1">
-        <div className="basis-1/5 bg-gray-900">
-          <LeftColumn />
-        </div>
-        <div className="basis-4/5 bg-neutral-950">
-          <RightColumn />
-        </div>
-      </div>
+    <div className="App">
+      <HashRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={<LoginPage setLoggedInUser={setLoggedInUser} />}
+          />
+          <Route path="/signup" element={<Sign />} />
+          <Route
+            path="/dashboard"
+            element={
+              <SecondPage
+                setLoggedInUser={setLoggedInUser}
+                loggedInUser={loggedInUser}
+              />
+            }
+          />
+        </Routes>
+      </HashRouter>
     </div>
   );
 }
