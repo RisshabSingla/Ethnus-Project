@@ -12,3 +12,7 @@
 .rec.rec-pagination {
     visibility: collapse;
 }
+
+.rec-carousel-item {
+    padding: 0.4rem;
+}

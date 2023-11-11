@@ -34,6 +34,7 @@ function QueryGrid({
       {queryData?.length !== 0 ? (
         queryData?.map((data) => (
           <Podcast
+            key={data._id}
             track={data}
             setCurrPlaying={setCurrPlaying}
             currPlaying={currPlaying}
@@ -68,6 +69,7 @@ function ExporeGrid({
       {exploreData
         ? exploreData?.map((data) => (
             <Podcast
+              key={data._id}
               track={data}
               setCurrPlaying={setCurrPlaying}
               currPlaying={currPlaying}
@@ -106,7 +108,7 @@ function Explore({
         setGotExploreData(true);
         return res.data.data;
       });
-      console.log(res.data.data);
+      // console.log(res.data.data);
     }
     getExploreData();
   }, []);

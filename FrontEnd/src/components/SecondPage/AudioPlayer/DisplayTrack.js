@@ -44,7 +44,12 @@ function DisplayTrack({
         {screenSize.width > 900 ? (
           <div>
             <div className="text">
-              <p className="title">{currentTrack?.name}</p>
+              <p className="title">
+                {currentTrack?.name.slice(
+                  0,
+                  Math.min(currentTrack.name.length, 15)
+                )}
+              </p>
               <p>{currentTrack?.artist}</p>
             </div>
           </div>

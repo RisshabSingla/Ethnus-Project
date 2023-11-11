@@ -14,6 +14,8 @@ function RightColumn({
   setIsPlaying,
   userFavourites,
   setUserFavourites,
+  recommendedPodcasts,
+  top10Podcasts,
 }) {
   return (
     <div className="pl-[166px] lg:pl-[208px]">
@@ -27,6 +29,8 @@ function RightColumn({
             setIsPlaying={setIsPlaying}
             userFavourites={userFavourites}
             setUserFavourites={setUserFavourites}
+            recommendedPodcasts={recommendedPodcasts}
+            top10Podcasts={top10Podcasts}
           />
         ) : (
           ""
@@ -53,6 +57,7 @@ function RightColumn({
             setIsPlaying={setIsPlaying}
             userFavourites={userFavourites}
             setUserFavourites={setUserFavourites}
+            recommendedPodcasts={recommendedPodcasts}
           />
         ) : (
           ""

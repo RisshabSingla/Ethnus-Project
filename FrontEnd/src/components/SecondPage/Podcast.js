@@ -45,8 +45,8 @@ function Podcast({
 
   function handleFavouriteAdd(track) {
     setAddFavourite(addFavourite ? false : true);
-    console.log(track);
-    console.log(track._id);
+    // console.log(track);
+    // console.log(track._id);
     axios
       .put(`http://localhost:8080/api/podcast/like/${track._id}`)
       .then(() => {
@@ -60,7 +60,7 @@ function Podcast({
 
   return (
     <>
-      <div className=" p-4 flex-shrink-0 font-bold font-serif text-lg border rounded-3xl text-left m-3   ">
+      <div className=" p-4 flex-shrink-0 font-bold font-serif text-lg border rounded-3xl text-left m-3 h-full w-full ">
         <img
           className="rounded-3xl border-2 m-3 min-w-[150px] min-h-[150px] max-h-[150px]"
           width="150px"
@@ -70,10 +70,18 @@ function Podcast({
         />
 
         <div className="flex justify-center text-slate-100">
-          {track?.name ? track.name : "Title"}
+          {track?.name
+            ? track.name
+                .slice(0, Math.min(track.name.length, 20))
+                .padEnd(20, " ")
+            : "Title"}
         </div>
         <div className="flex justify-center text-slate-300">
-          {track?.artist ? track.artist : "Artist"}
+          {track?.artist
+            ? track.artist
+                .slice(0, Math.min(track.artist.length, 15))
+                .padEnd(15, " ")
+            : "Artist"}
         </div>
 
         <div className="flex justify-center">

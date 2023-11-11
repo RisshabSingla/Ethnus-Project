@@ -49,14 +49,15 @@ import axios from "axios";
 //   // ...
 // ];
 
-function SecondPage({ loggedInUser }) {
+function SecondPage({ loggedInUser, setLoggedInUser }) {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState("1");
   const [currPlaying, setCurrPlaying] = useState([]);
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [recommendedPodcasts, setRecommendedPodcasts] = useState({});
-  const [userFavourites, setUserFavourites] = useState({});
+  const [recommendedPodcasts, setRecommendedPodcasts] = useState([]);
+  const [top10Podcasts, setTop10Podcasts] = useState([]);
+  const [userFavourites, setUserFavourites] = useState([]);
 
   function setClickedItem(id) {
     setClicked(id);
@@ -66,19 +67,51 @@ function SecondPage({ loggedInUser }) {
 
   useEffect(() => {
     async function getAllFavourites() {
-      const res = await axios.get("http://localhost:8080/api/podcast/like");
-      console.log(res.data.data);
-      setUserFavourites(res.data.data);
+      try {
+        const res = await axios.get("http://localhost:8080/api/podcast/like");
+        // console.log(res.data.data);
+        setUserFavourites(res.data.data);
+      } catch (err) {
+        console.log(err);
+        navigate("/");
+      }
     }
     getAllFavourites();
   }, []);
 
-  // console.log(loggedInUser);
+  // Recommended Podcasts
+  useEffect(() => {
+    async function getAllRecommended() {
+      try {
+        const res = await axios.get(
+          "http://localhost:8080/api/podcast/recommended"
+        );
+        console.log(res.data.data);
+        setRecommendedPodcasts(res.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+      // console.log(res.data.data);
+    }
+    getAllRecommended();
+  }, []);
+
+  // Top10Podcasts
+  useEffect(() => {
+    async function getTop10Podcasts() {
+      const res = await axios.get("http://localhost:8080/api/podcast/top10");
+      // console.log(res.data.data);
+      setTop10Podcasts(res.data.data);
+    }
+    getTop10Podcasts();
+  }, []);
+
+  // console.log("loggedIn:", loggedInUser);
   return (
     <>
-      {loggedInUser ? "" : navigate("/", { replace: true })}
+      {loggedInUser !== "" ? "" : navigate("/", { replace: true })}
       <div className=" bg-gradient-to-r from-blue-950 to-neutral-950">
-        <NavBar />
+        <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
         <div className="flex">
           <div className="fixed h-screen">
             <LeftColumn clicked={clicked} setClickedItem={setClickedItem} />
@@ -94,6 +127,7 @@ function SecondPage({ loggedInUser }) {
               userFavourites={userFavourites}
               setUserFavourites={setUserFavourites}
               recommendedPodcasts={recommendedPodcasts}
+              top10Podcasts={top10Podcasts}
             />
           </div>
         </div>

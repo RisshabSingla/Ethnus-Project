@@ -22,6 +22,7 @@ function Favourites({
             <div className="grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-3">
               {userFavourites.map((data) => (
                 <Podcast
+                  key={data._id}
                   track={data}
                   setCurrPlaying={setCurrPlaying}
                   currPlaying={currPlaying}
