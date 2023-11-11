@@ -1,11 +1,19 @@
 import Podcast from "../../components/SecondPage/Podcast";
 import Recommendation from "../../components/SecondPage/Recommendation";
 
-function Favourites({ hasFavourites = true, setTracks }) {
+function Favourites({
+  setCurrPlaying,
+  currPlaying,
+  trackIndex,
+  setTrackIndex,
+  setIsPlaying,
+  userFavourites,
+  setUserFavourites,
+}) {
   return (
     <div>
       <div className="font-bold	font-serif text-lg   items-center  pl-3 mx-3">
-        {hasFavourites ? (
+        {userFavourites ? (
           <div>
             <div className="flex ml-4 pb-4 font-bold	font-serif text-4xl pl-3 mx-3 text-slate-100">
               Your Favourites

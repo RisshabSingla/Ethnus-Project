@@ -4,15 +4,52 @@ import "./Explore.css";
 import WifiLoader from "../../components/SecondPage/wifiLoader";
 import axios from "axios";
 
-function Search({ query, setQuery }) {
+function Search({ query, setQuery, setFound }) {
   return (
     <input
       className="search"
       type="text"
       placeholder="Search Podcasts..."
       value={query}
-      onChange={(e) => setQuery(e.target.value)}
+      onChange={(e) => {
+        setQuery(e.target.value);
+        setFound(false);
+      }}
     />
+  );
+}
+
+function QueryGrid({
+  queryData,
+  setCurrPlaying,
+  currPlaying,
+  trackIndex,
+  setTrackIndex,
+  setIsPlaying,
+  userFavourites,
+  setUserFavourites,
+}) {
+  return (
+    <div className="grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {queryData?.length !== 0 ? (
+        queryData?.map((data) => (
+          <Podcast
+            track={data}
+            setCurrPlaying={setCurrPlaying}
+            currPlaying={currPlaying}
+            trackIndex={trackIndex}
+            setTrackIndex={setTrackIndex}
+            setIsPlaying={setIsPlaying}
+            userFavourites={userFavourites}
+            setUserFavourites={setUserFavourites}
+          />
+        ))
+      ) : (
+        <div className="w-full font-bold	font-serif text-xl text-slate-100 p-3 mx-3">
+          Sorry No PodCast Found
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -23,6 +60,8 @@ function ExporeGrid({
   trackIndex,
   setTrackIndex,
   setIsPlaying,
+  userFavourites,
+  setUserFavourites,
 }) {
   return (
     <div className="grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -35,6 +74,8 @@ function ExporeGrid({
               trackIndex={trackIndex}
               setTrackIndex={setTrackIndex}
               setIsPlaying={setIsPlaying}
+              userFavourites={userFavourites}
+              setUserFavourites={setUserFavourites}
             />
           ))
         : ""}
@@ -48,13 +89,17 @@ function Explore({
   trackIndex,
   setTrackIndex,
   setIsPlaying,
+  userFavourites,
+  setUserFavourites,
 }) {
   const [query, setQuery] = useState("");
   const [found, setFound] = useState(false);
   const [exploreData, setExploreData] = useState([]);
+  const [queryData, setQueryData] = useState([]);
   const [gotExploreData, setGotExploreData] = useState(false);
 
   useEffect(function () {
+    // get all podcast
     async function getExploreData() {
       const res = await axios.get("http://localhost:8080/api/podcast");
       setExploreData(() => {
@@ -69,10 +114,16 @@ function Explore({
   useEffect(
     function () {
       async function FindPodcasts() {
-        const data = axios
-          .get(`http://localhost:8080/api/?search=${query}`)
-          .then((res) => res)
-          .catch((res) => console.log(res));
+        const res = await axios.get(
+          `http://localhost:8080/api/?search=${query}`
+        );
+        setQueryData(() => {
+          setFound(true);
+          // console.log(res);
+          // console.log(res.data);
+          // console.log(res.data?.podcasts);
+          return res.data?.podcasts;
+        });
       }
       FindPodcasts();
     },
@@ -87,16 +138,29 @@ function Explore({
   return (
     <div>
       <div className="pl-7">
-        <Search query={query} setQuery={setQuery} />
+        <Search query={query} setQuery={setQuery} setFound={setFound} />
       </div>
       <div className="font-bold	font-serif text-lg  pl-3 mx-3">
         {query === "" ? (
           ""
         ) : (
           <div>
-            {" "}
             {found ? (
-              <div>Found</div>
+              <div>
+                <div className="font-bold	font-serif text-xl text-slate-100 p-3 mx-3">
+                  Found these results
+                </div>
+                <QueryGrid
+                  queryData={queryData}
+                  setCurrPlaying={setCurrPlaying}
+                  currPlaying={currPlaying}
+                  trackIndex={trackIndex}
+                  setTrackIndex={setTrackIndex}
+                  setIsPlaying={setIsPlaying}
+                  userFavourites={userFavourites}
+                  setUserFavourites={setUserFavourites}
+                />
+              </div>
             ) : (
               <div className="font-bold	font-serif text-xl text-slate-100 p-3 mx-3">
                 Searching...
@@ -116,6 +180,8 @@ function Explore({
               trackIndex={trackIndex}
               setTrackIndex={setTrackIndex}
               setIsPlaying={setIsPlaying}
+              userFavourites={userFavourites}
+              setUserFavourites={setUserFavourites}
             />
           </div>
         ) : (

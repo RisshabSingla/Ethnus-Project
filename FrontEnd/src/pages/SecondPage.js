@@ -2,7 +2,10 @@ import AudioPlayer from "../components/SecondPage/AudioPlayer/AudioPlayer";
 import LeftColumn from "../components/SecondPage/LeftColumn";
 import NavBar from "../components/SecondPage/NavBar";
 import RightColumn from "../components/SecondPage/RightColumn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
 
 // const Alltracks = [
 //   {
@@ -47,43 +50,65 @@ import { useState } from "react";
 // ];
 
 function SecondPage({ loggedInUser }) {
+  const navigate = useNavigate();
   const [clicked, setClicked] = useState("1");
   const [currPlaying, setCurrPlaying] = useState([]);
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const [userFavourites, setUserFavourites] = useState({});
+
   function setClickedItem(id) {
     setClicked(id);
   }
+  // console.log(loggedInUser);
+  axios.defaults.headers.common["x-auth-token"] = `${loggedInUser}`;
+
+  useEffect(() => {
+    async function getAllFavourites() {
+      const res = await axios.get("http://localhost:8080/api/podcast/like");
+      console.log(res.data.data);
+      setUserFavourites(res.data.data);
+    }
+    getAllFavourites();
+  }, []);
+
+  // console.log(loggedInUser);
   return (
-    <div className=" bg-gradient-to-r from-blue-950 to-neutral-950">
-      <NavBar />
-      <div className="flex">
-        <div className="fixed h-screen">
-          <LeftColumn clicked={clicked} setClickedItem={setClickedItem} />
+    <>
+      {loggedInUser ? "" : navigate("/", { replace: true })}
+      <div className=" bg-gradient-to-r from-blue-950 to-neutral-950">
+        <NavBar />
+        <div className="flex">
+          <div className="fixed h-screen">
+            <LeftColumn clicked={clicked} setClickedItem={setClickedItem} />
+          </div>
+          <div>
+            <RightColumn
+              current={clicked}
+              setCurrPlaying={setCurrPlaying}
+              currPlaying={currPlaying}
+              trackIndex={trackIndex}
+              setTrackIndex={setTrackIndex}
+              setIsPlaying={setIsPlaying}
+              userFavourites={userFavourites}
+              setUserFavourites={setUserFavourites}
+            />
+          </div>
         </div>
-        <div>
-          <RightColumn
-            current={clicked}
-            setCurrPlaying={setCurrPlaying}
-            currPlaying={currPlaying}
-            trackIndex={trackIndex}
-            setTrackIndex={setTrackIndex}
-            setIsPlaying={setIsPlaying}
-          />
+        <div className="sticky inset-x-0 bottom-0 font-bold	font-serif text-lg  text-slate-50 text-center flex justify-center	backdrop-blur-sm">
+          <div className={currPlaying.length === 0 ? "hidden" : ""}>
+            <AudioPlayer
+              isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying}
+              tracks={currPlaying}
+              trackIndex={trackIndex}
+              setTrackIndex={setTrackIndex}
+            />
+          </div>
         </div>
       </div>
-      <div className="sticky inset-x-0 bottom-0 font-bold	font-serif text-lg  text-slate-50 text-center flex justify-center	backdrop-blur-sm">
-        <div className={currPlaying.length === 0 ? "hidden" : ""}>
-          <AudioPlayer
-            isPlaying={isPlaying}
-            setIsPlaying={setIsPlaying}
-            tracks={currPlaying}
-            trackIndex={trackIndex}
-            setTrackIndex={setTrackIndex}
-          />
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 

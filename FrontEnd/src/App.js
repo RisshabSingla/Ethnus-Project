@@ -6,8 +6,10 @@ import Sign from "./pages/SignUpPage";
 import SecondPage from "./pages/SecondPage";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({});
-
+  const [loggedInUser, setLoggedInUser] = useState(
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTRlNGYzOTI5ZWNhN2FmNmJlMGVkNDEiLCJuYW1lIjoiUmlzc2hhYiBTaW5nbGEiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjk5Njg5MjI4LCJleHAiOjE3MDAyOTQwMjh9.oXTa17YyDZWLuW9aT9Z3dHLZjUK_P9Jhctd_VPhaKd8"
+  );
+  // console.log(loggedInUser);
   return (
     <div className="App">
       <HashRouter>

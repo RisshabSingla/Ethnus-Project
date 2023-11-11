@@ -12,6 +12,8 @@ function RightColumn({
   trackIndex,
   setTrackIndex,
   setIsPlaying,
+  userFavourites,
+  setUserFavourites,
 }) {
   return (
     <div className="pl-[166px] lg:pl-[208px]">
@@ -23,6 +25,8 @@ function RightColumn({
             trackIndex={trackIndex}
             setTrackIndex={setTrackIndex}
             setIsPlaying={setIsPlaying}
+            userFavourites={userFavourites}
+            setUserFavourites={setUserFavourites}
           />
         ) : (
           ""
@@ -34,11 +38,25 @@ function RightColumn({
             trackIndex={trackIndex}
             setTrackIndex={setTrackIndex}
             setIsPlaying={setIsPlaying}
+            userFavourites={userFavourites}
+            setUserFavourites={setUserFavourites}
           />
         ) : (
           ""
         )}
-        {current === "4" ? <Favourites setCurrPlaying={setCurrPlaying} /> : ""}
+        {current === "4" ? (
+          <Favourites
+            setCurrPlaying={setCurrPlaying}
+            currPlaying={currPlaying}
+            trackIndex={trackIndex}
+            setTrackIndex={setTrackIndex}
+            setIsPlaying={setIsPlaying}
+            userFavourites={userFavourites}
+            setUserFavourites={setUserFavourites}
+          />
+        ) : (
+          ""
+        )}
         {current === "5" ? <Setting /> : ""}
         {current === "6" ? <Subscribe /> : ""}
         {current === "7" ? <LogOut /> : ""}

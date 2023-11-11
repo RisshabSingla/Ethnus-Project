@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 function Podcast({
@@ -7,10 +8,16 @@ function Podcast({
   trackIndex,
   setTrackIndex,
   setIsPlaying,
+  userFavourites,
+  setUserFavourites,
 }) {
   const [addQueue, setAddQueue] = useState(false);
   const [addFront, setAddFront] = useState(false);
-  const [addFavourite, setAddFavourite] = useState(false);
+  const [addFavourite, setAddFavourite] = useState(
+    userFavourites?.filter((data) => data._id === track._id).length === 0
+      ? false
+      : true
+  );
   function handleQueueAdd() {
     setAddQueue(addQueue ? false : true);
     if (!addQueue) {
@@ -36,8 +43,19 @@ function Podcast({
     }
   }
 
-  function handleFavouriteAdd() {
+  function handleFavouriteAdd(track) {
     setAddFavourite(addFavourite ? false : true);
+    console.log(track);
+    console.log(track._id);
+    axios
+      .put(`http://localhost:8080/api/podcast/like/${track._id}`)
+      .then(() => {
+        !addFavourite
+          ? setUserFavourites([...userFavourites, track])
+          : setUserFavourites(
+              userFavourites?.filter((data) => data._id !== track._id)
+            );
+      });
   }
 
   return (
@@ -54,7 +72,7 @@ function Podcast({
         <div className="flex justify-center text-slate-100">
           {track?.name ? track.name : "Title"}
         </div>
-        <div className="flex justify-center text-slate-100">
+        <div className="flex justify-center text-slate-300">
           {track?.artist ? track.artist : "Artist"}
         </div>
 
@@ -73,7 +91,12 @@ function Podcast({
               <img width="50px" src="./images/queue/1.svg" alt="" />
             )}
           </button>
-          <button onClick={handleFavouriteAdd}>
+          <button
+            onClick={() => {
+              handleFavouriteAdd(track);
+              // console.log(track);
+            }}
+          >
             {addFavourite ? (
               <img width="50px" src="./images/favourite/2.svg" alt="" />
             ) : (

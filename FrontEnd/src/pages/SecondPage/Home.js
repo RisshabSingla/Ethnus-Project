@@ -10,6 +10,8 @@ function Home({
   trackIndex,
   setTrackIndex,
   setIsPlaying,
+  userFavourites,
+  setUserFavourites,
 }) {
   return (
     <div>
