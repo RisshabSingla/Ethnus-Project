@@ -172,7 +172,7 @@ function Explore({
       <div className="font-bold	font-serif text-lg  pl-3 mx-3">
         {gotExploreData ? (
           <div className="font-bold	font-serif text-xl text-slate-100 p-3 mx-3">
-            <div>Here are some recommendations </div>
+            <div>Take a look at some of the lastest Podcasts </div>
             <ExporeGrid
               exploreData={exploreData}
               setCurrPlaying={setCurrPlaying}
