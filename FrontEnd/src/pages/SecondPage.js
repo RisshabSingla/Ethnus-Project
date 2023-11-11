@@ -55,7 +55,7 @@ function SecondPage({ loggedInUser }) {
   const [currPlaying, setCurrPlaying] = useState([]);
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-
+  const [recommendedPodcasts, setRecommendedPodcasts] = useState({});
   const [userFavourites, setUserFavourites] = useState({});
 
   function setClickedItem(id) {
@@ -93,6 +93,7 @@ function SecondPage({ loggedInUser }) {
               setIsPlaying={setIsPlaying}
               userFavourites={userFavourites}
               setUserFavourites={setUserFavourites}
+              recommendedPodcasts={recommendedPodcasts}
             />
           </div>
         </div>

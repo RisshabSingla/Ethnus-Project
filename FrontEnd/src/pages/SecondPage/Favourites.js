@@ -9,6 +9,7 @@ function Favourites({
   setIsPlaying,
   userFavourites,
   setUserFavourites,
+  recommendedPodcasts,
 }) {
   return (
     <div>
@@ -40,7 +41,16 @@ function Favourites({
             </div>
           </div>
         )}
-        <Recommendation />
+        <Recommendation
+          recommendedPodcasts={recommendedPodcasts}
+          setCurrPlaying={setCurrPlaying}
+          currPlaying={currPlaying}
+          trackIndex={trackIndex}
+          setTrackIndex={setTrackIndex}
+          setIsPlaying={setIsPlaying}
+          userFavourites={userFavourites}
+          setUserFavourites={setUserFavourites}
+        />
         <div className="invisible">
           ultrices mi ut nisl mollis Lorem ipsum dolor sit amet,
           consecteturultrices mi ut nisl mollis Lorem ipsum dolor sit amet,
