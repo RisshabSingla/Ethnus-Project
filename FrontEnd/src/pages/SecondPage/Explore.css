@@ -1,6 +1,7 @@
 .search {
     justify-self: center;
     border: solid;
+    border-color: white;
     padding: 0rem 1rem;
     font-size: 1.8rem;
     border-radius: 0.7rem;

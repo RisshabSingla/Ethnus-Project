@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import DropDown from "./DropDown";
-import axios from "axios";
+// import axios from "axios";
 
 function User({
   loggedInUser,
   name,
   profileImage = "./images/userImage/1.svg",
-  isPremium = true,
+  setClicked,
 }) {
   // const [name, setName] = useState("");
   // useEffect(() => {
@@ -24,12 +24,12 @@ function User({
         </div>
         <div className="text-base font-serif pl-3.5 text-left	">
           <div> {name ? name : "Risshab Singla"}</div>
-          <div className="text-xs font-serif">
+          {/* <div className="text-xs font-serif">
             {isPremium ? "Premium" : "Hello"}
-          </div>
+          </div> */}
         </div>
         <div>
-          <DropDown loggedInUser={loggedInUser} />
+          <DropDown loggedInUser={loggedInUser} setClicked={setClicked} />
         </div>
       </div>
     </div>

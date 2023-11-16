@@ -43,7 +43,7 @@ function ColumnItem({
           <img width="35px" src={svgSource} alt="" />
           <div className="hidden min-[940px]:flex">
             <div
-              className={`hover:text-orange-500 font-bold font-serif pl-3.5 text-lg ${textColor}`}
+              className={`hover:text-orange-500 font-bold pl-3.5 text-lg ${textColor}`}
             >
               {ItemName}
             </div>

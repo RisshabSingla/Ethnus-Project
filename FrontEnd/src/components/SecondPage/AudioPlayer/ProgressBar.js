@@ -1,7 +1,7 @@
 function ProgressBar({ progressBarRef, audioRef, timeProgress, duration }) {
   const handleProgressChange = () => {
     audioRef.current.currentTime = progressBarRef.current.value;
-    console.log(progressBarRef.current.value);
+    // console.log(progressBarRef.current.value);
   };
   const formatTime = (time) => {
     if (time && !isNaN(time)) {

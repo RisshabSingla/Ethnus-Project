@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
 import Sign from "./pages/SignUpPage";
@@ -10,7 +10,7 @@ function App() {
   // console.log(loggedInUser);
   return (
     <div className="App">
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           <Route
             path="/"
@@ -27,7 +27,7 @@ function App() {
             }
           />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 }

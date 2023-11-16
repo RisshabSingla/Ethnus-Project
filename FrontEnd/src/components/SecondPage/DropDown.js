@@ -1,12 +1,14 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function DropDown() {
+export default function DropDown({ setClicked }) {
+  const navigate = useNavigate();
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -31,46 +33,35 @@ export default function DropDown() {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <button
+                  onClick={() => setClicked("5")}
                   className={classNames(
                     active ? " text-orange-500" : "text-orange-100",
                     "block px-4 py-2 text-sm"
                   )}
                 >
                   Account settings
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? " text-orange-500" : "text-orange-100",
-                    "block px-4 py-2 text-sm"
-                  )}
-                >
-                  Support
-                </a>
+                </button>
               )}
             </Menu.Item>
 
-            <form method="POST" action="#">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? " text-orange-500" : "text-orange-100",
-                      "block w-full px-4 py-2 text-left text-sm"
-                    )}
-                  >
-                    Sign out
-                  </button>
-                )}
-              </Menu.Item>
-            </form>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  onClick={() => {
+                    navigate("/");
+                    window.location.reload();
+                  }}
+                  type="submit"
+                  className={classNames(
+                    active ? " text-orange-500" : "text-orange-100",
+                    "block w-full px-4 py-2 text-left text-sm"
+                  )}
+                >
+                  Sign out
+                </button>
+              )}
+            </Menu.Item>
           </div>
         </Menu.Items>
       </Transition>

@@ -111,7 +111,11 @@ function SecondPage({ loggedInUser, setLoggedInUser }) {
     <>
       {loggedInUser !== "" ? "" : navigate("/", { replace: true })}
       <div className=" bg-gradient-to-r from-blue-950 to-neutral-950">
-        <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+        <NavBar
+          loggedInUser={loggedInUser}
+          setLoggedInUser={setLoggedInUser}
+          setClicked={setClicked}
+        />
         <div className="flex">
           <div className="fixed h-screen">
             <LeftColumn clicked={clicked} setClickedItem={setClickedItem} />

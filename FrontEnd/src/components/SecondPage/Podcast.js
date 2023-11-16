@@ -5,12 +5,12 @@ function Podcast({
   track,
   setCurrPlaying,
   currPlaying,
-  trackIndex,
   setTrackIndex,
   setIsPlaying,
   userFavourites,
   setUserFavourites,
 }) {
+  const [favouriteAnimation, setFavouriteAnimation] = useState(false);
   const [addQueue, setAddQueue] = useState(false);
   const [addFront, setAddFront] = useState(false);
   const [addFavourite, setAddFavourite] = useState(
@@ -44,9 +44,8 @@ function Podcast({
   }
 
   function handleFavouriteAdd(track) {
-    setAddFavourite(addFavourite ? false : true);
-    // console.log(track);
-    // console.log(track._id);
+    setAddFavourite((prev) => !prev);
+    setFavouriteAnimation(true);
     axios
       .put(`http://localhost:8080/api/podcast/like/${track._id}`)
       .then(() => {
@@ -56,11 +55,14 @@ function Podcast({
               userFavourites?.filter((data) => data._id !== track._id)
             );
       });
+    setTimeout(() => {
+      setFavouriteAnimation(false);
+    }, 500);
   }
 
   return (
     <>
-      <div className=" p-4 flex-shrink-0 font-bold font-serif text-lg border rounded-3xl text-left m-3 h-full w-full ">
+      <div className="p-4 flex-shrink-0 font-bold text-lg border rounded-3xl text-left m-3 h-full w-full border-gray-800 bg-gradient-to-tr from-black to-transparent">
         <img
           className="rounded-3xl border-2 m-3 min-w-[150px] min-h-[150px] max-h-[150px]"
           width="150px"
@@ -104,6 +106,7 @@ function Podcast({
               handleFavouriteAdd(track);
               // console.log(track);
             }}
+            className={`px-2 ${favouriteAnimation ? "animate-ping" : ""}`}
           >
             {addFavourite ? (
               <img width="50px" src="./images/favourite/2.svg" alt="" />

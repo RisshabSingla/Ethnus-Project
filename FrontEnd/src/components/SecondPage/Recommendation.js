@@ -13,7 +13,7 @@ function Recommendation({
 }) {
   return (
     <>
-      <div className="flex ml-4 pb-4 font-bold	font-serif text-4xl pl-3 mx-3 text-slate-100">
+      <div className="flex ml-4 pb-4 font-bold text-4xl pl-3 mx-3 text-slate-100">
         Recommended For You
       </div>
       <div className="rounded-2xl">

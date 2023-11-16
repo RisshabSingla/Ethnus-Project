@@ -28,7 +28,7 @@ function DisplayTrack({
           {currentTrack?.img ? (
             <img
               className="rounded-2xl"
-              width="50px"
+              width="75px"
               src={currentTrack.img}
               alt="audio avatar"
             />
@@ -43,13 +43,21 @@ function DisplayTrack({
 
         {screenSize.width > 900 ? (
           <div>
-            <div className="text">
-              <p className="title">
-                {currentTrack?.name.slice(
-                  0,
-                  Math.min(currentTrack.name.length, 15)
-                )}
-              </p>
+            <div className="text font-sans font-thin">
+              {currentTrack?.name.length > 15 ? (
+                <marquee behavior="scroll" direction="left">
+                  <p className="title" style={{ fontWeight: "500" }}>
+                    {currentTrack?.name}
+                  </p>
+                </marquee>
+              ) : (
+                <p className="title">
+                  {currentTrack?.name.slice(
+                    0,
+                    Math.min(currentTrack.name.length, 15)
+                  )}
+                </p>
+              )}
               <p>{currentTrack?.artist}</p>
             </div>
           </div>
