@@ -43,7 +43,7 @@ function LoginPage({ setLoggedInUser, setLoggedInID }) {
   function handleLoginUser(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/api/login", user)
+      .post("https://ethnus-project-backend.vercel.app/api/login", user)
       .then((res) => {
         // console.log(res);
         setLoggedInUser(res.data.data);

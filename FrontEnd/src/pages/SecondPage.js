@@ -26,7 +26,9 @@ function SecondPage({ loggedInUser, loggedInID }) {
   useEffect(() => {
     async function getAllFavourites() {
       try {
-        const res = await axios.get("http://localhost:8080/api/podcast/like");
+        const res = await axios.get(
+          "hhttps://ethnus-project-backend.vercel.app/api/podcast/like"
+        );
         setUserFavourites(res.data.data);
       } catch (err) {
         console.log(err);
@@ -41,7 +43,7 @@ function SecondPage({ loggedInUser, loggedInID }) {
     async function getAllSettings() {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/users/${loggedInID}`
+          `https://ethnus-project-backend.vercel.app/api/users/${loggedInID}`
         );
         console.log(res.data);
         setUserSettings(res.data.data);
@@ -58,7 +60,7 @@ function SecondPage({ loggedInUser, loggedInID }) {
     async function getAllRecommended() {
       try {
         const res = await axios.get(
-          "http://localhost:8080/api/podcast/recommended"
+          "https://ethnus-project-backend.vercel.app/api/podcast/recommended"
         );
         setRecommendedPodcasts(res.data.data);
       } catch (err) {
@@ -71,7 +73,9 @@ function SecondPage({ loggedInUser, loggedInID }) {
   // Top10Podcasts
   useEffect(() => {
     async function getTop10Podcasts() {
-      const res = await axios.get("http://localhost:8080/api/podcast/top10");
+      const res = await axios.get(
+        "https://ethnus-project-backend.vercel.app/api/podcast/top10"
+      );
       setTop10Podcasts(res.data.data);
     }
     getTop10Podcasts();

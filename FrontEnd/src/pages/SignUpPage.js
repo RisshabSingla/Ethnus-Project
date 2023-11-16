@@ -52,7 +52,7 @@ function SignUp() {
     };
     // console.log(data);
     axios
-      .post("http://localhost:8080/api/users", data)
+      .post("https://ethnus-project-backend.vercel.app/api/users", data)
       .then((res) => {
         // console.log(res);
         navigate("/");
