@@ -49,8 +49,9 @@ import axios from "axios";
 //   // ...
 // ];
 
-function SecondPage({ loggedInUser, setLoggedInUser }) {
+function SecondPage({ loggedInUser, setLoggedInUser, loggedInID }) {
   const navigate = useNavigate();
+  const [userSettings, setUserSettings] = useState([]);
   const [clicked, setClicked] = useState("1");
   const [currPlaying, setCurrPlaying] = useState([]);
   const [trackIndex, setTrackIndex] = useState(0);
@@ -79,6 +80,23 @@ function SecondPage({ loggedInUser, setLoggedInUser }) {
     getAllFavourites();
   }, []);
 
+  // User Settings
+  useEffect(() => {
+    async function getAllSettings() {
+      try {
+        const res = await axios.get(
+          `http://localhost:8080/api/users/${loggedInID}`
+        );
+        console.log(res.data);
+        setUserSettings(res.data);
+      } catch (err) {
+        console.log(err);
+        navigate("/");
+      }
+    }
+    getAllSettings();
+  }, []);
+
   // Recommended Podcasts
   useEffect(() => {
     async function getAllRecommended() {
@@ -86,7 +104,7 @@ function SecondPage({ loggedInUser, setLoggedInUser }) {
         const res = await axios.get(
           "http://localhost:8080/api/podcast/recommended"
         );
-        console.log(res.data.data);
+        // console.log(res.data.data);
         setRecommendedPodcasts(res.data.data);
       } catch (err) {
         console.log(err);
@@ -111,11 +129,7 @@ function SecondPage({ loggedInUser, setLoggedInUser }) {
     <>
       {loggedInUser !== "" ? "" : navigate("/", { replace: true })}
       <div className=" bg-gradient-to-r from-blue-950 to-neutral-950">
-        <NavBar
-          loggedInUser={loggedInUser}
-          setLoggedInUser={setLoggedInUser}
-          setClicked={setClicked}
-        />
+        <NavBar userSettings={userSettings} setClicked={setClicked} />
         <div className="flex">
           <div className="fixed h-screen">
             <LeftColumn clicked={clicked} setClickedItem={setClickedItem} />

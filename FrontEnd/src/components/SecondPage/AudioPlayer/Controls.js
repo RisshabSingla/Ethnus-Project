@@ -37,8 +37,8 @@ function Controls({
   const screenSize = useScreenSize();
   const repeat = useCallback(() => {
     // console.log("run");
-    const currentTime = audioRef !== null ? audioRef.current.currentTime : 0;
-    setTimeProgress(currentTime ? currentTime : 0);
+    let currentTime = audioRef !== null ? audioRef.current.currentTime : 0;
+    setTimeProgress(currentTime !== null ? currentTime : 0);
     progressBarRef.current.value = currentTime;
     progressBarRef.current.style.setProperty(
       "--range-progress",

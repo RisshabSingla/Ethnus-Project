@@ -7,6 +7,7 @@ import SecondPage from "./pages/SecondPage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState("");
+  const [loggedInID, setLoggedInID] = useState("");
   // console.log(loggedInUser);
   return (
     <div className="App">
@@ -14,7 +15,12 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<LoginPage setLoggedInUser={setLoggedInUser} />}
+            element={
+              <LoginPage
+                setLoggedInUser={setLoggedInUser}
+                setLoggedInID={setLoggedInID}
+              />
+            }
           />
           <Route path="/signup" element={<Sign />} />
           <Route
@@ -23,6 +29,7 @@ function App() {
               <SecondPage
                 setLoggedInUser={setLoggedInUser}
                 loggedInUser={loggedInUser}
+                loggedInID={loggedInID}
               />
             }
           />

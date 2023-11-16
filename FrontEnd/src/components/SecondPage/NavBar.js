@@ -2,7 +2,7 @@ import BreadCrumb from "./BreadCrumb";
 import Logo from "./Logo";
 import User from "./User";
 
-function NavBar({ loggedInUser, setLoggedInUser, setClicked }) {
+function NavBar({ setClicked, userSettings }) {
   return (
     <div className="sticky inset-x-0 top-0 font-bold font-sans text-lg text-slate-50  backdrop-blur-sm z-10">
       <div className="flex justify-between pt-2 px-2">
@@ -13,7 +13,7 @@ function NavBar({ loggedInUser, setLoggedInUser, setClicked }) {
           <BreadCrumb />
         </div>
         <div>
-          <User loggedInUser={loggedInUser} setClicked={setClicked} />
+          <User setClicked={setClicked} userSettings={userSettings} />
         </div>
       </div>
     </div>

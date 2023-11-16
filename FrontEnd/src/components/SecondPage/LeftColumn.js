@@ -1,4 +1,3 @@
-import Logo from "./Logo";
 import LeftMain from "./LeftMain";
 import ColumnItem from "./ColumnItem";
 

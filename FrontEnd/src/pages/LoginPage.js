@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-function LoginPage({ setLoggedInUser }) {
+function LoginPage({ setLoggedInUser, setLoggedInID }) {
   const navigate = useNavigate();
   const [nav, setNav] = useState(false);
   const [message, setMessage] = useState("");
@@ -47,6 +47,7 @@ function LoginPage({ setLoggedInUser }) {
       .then((res) => {
         // console.log(res);
         setLoggedInUser(res.data.data);
+        setLoggedInID(res.data.id);
         setMessage("Login Successful");
         setMessageClassName("mb-4 pb-4");
         navigate("/dashboard");
