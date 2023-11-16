@@ -65,53 +65,5 @@ router.get("/like", auth, async (req, res) => {
   res.status(200).send({ data: podcasts });
 });
 
-//top-10-podcast
-router.get("/top10", auth, async (req, res) => {
-  try {
-    const limit = parseInt(req.query.limit) || 10;
-    const sortField = req.query.sort || "duration";
-    const fields = req.query.fields || "name artist podcast img duration";
-
-    const podcasts = await Podcast.find()
-      .limit(limit)
-      .sort(sortField)
-      .select(fields);
-
-    res.status(200).send({ data: podcasts });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Internal Server Error" });
-  }
-});
-
-//recommended
-router.get("/recommended", auth, async (req, res) => {
-  try {
-    const limit = parseInt(req.query.limit) || 10;
-
-    // Dynamic sorting based on query parameters
-    const sortDirection = req.query.order === "-duration";
-    const sortField = req.query.sort || sortDirection;
-
-    const fields = req.query.fields || "name artist podcast img duration";
-
-    const podcasts = await Podcast.find()
-      .limit(limit)
-      .sort(sortField)
-      .select(fields);
-
-    res.status(200).send({ data: podcasts });
-  } catch (error) {
-    console.error(error);
-
-    // Send more detailed error information during development
-    // and a more generic response in production
-    const errorMessage =
-      process.env.NODE_ENV === "development"
-        ? error.message
-        : "Internal Server Error";
-    res.status(500).send({ error: errorMessage });
-  }
-});
 
 module.exports = router;

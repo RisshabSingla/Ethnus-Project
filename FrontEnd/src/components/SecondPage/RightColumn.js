@@ -3,6 +3,7 @@ import Explore from "../../pages/SecondPage/Explore";
 import Favourites from "../../pages/SecondPage/Favourites";
 import Setting from "../../pages/SecondPage/Setting";
 import LogOut from "../../pages/SecondPage/LogOut";
+import Top10Charts from "./Top10Charts";
 
 function RightColumn({
   current,
