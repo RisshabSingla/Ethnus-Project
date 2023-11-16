@@ -7,50 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-// const Alltracks = [
-//   {
-//     name: "Apna Bale Le",
-//     artist: "Trinix ft Rushawn",
-//     img: "https://ik.imagekit.io/exu18jfr4/img.jpg?updatedAt=1699356626542",
-//     podcast:
-//       "https://ik.imagekit.io/exu18jfr4/That_All_Men_Be_Saved_God_s_Desire_and_Our_Role_Part_166928.mp3?updatedAt=1699356823539",
-//   },
-//   {
-//     name: "Chaand_Baaliyan",
-//     podcast: "./music/2.mp3",
-//     artist: "Trinix ft Rushawn",
-//     img: "",
-//   },
-//   {
-//     name: "Apna Bale Le",
-//     artist: "Trinix ft Rushawn",
-//     img: "./images/3.jpeg",
-//     podcast: "./music/2.mp3",
-//   },
-//   {
-//     name: "Chaand_Baaliyan",
-//     podcast: "./music/2.mp3",
-//     artist: "Trinix ft Rushawn",
-//     img: "./images/3.jpeg",
-//   },
-//   {
-//     name: "Apna Bale Le",
-//     artist: "Trinix ft Rushawn",
-//     img: "./images/3.jpeg",
-//     podcast: "./music/2.mp3",
-//   },
-//   {
-//     name: "Chaand_Baaliyan",
-//     podcast: "./music/2.mp3",
-//     artist: "Trinix ft Rushawn",
-//     img: "./images/3.jpeg",
-//   },
-
-//   // ...
-// ];
-
-function SecondPage({ loggedInUser, setLoggedInUser }) {
+function SecondPage({ loggedInUser, loggedInID }) {
   const navigate = useNavigate();
+  const [userSettings, setUserSettings] = useState([]);
   const [clicked, setClicked] = useState("1");
   const [currPlaying, setCurrPlaying] = useState([]);
   const [trackIndex, setTrackIndex] = useState(0);
@@ -62,14 +21,12 @@ function SecondPage({ loggedInUser, setLoggedInUser }) {
   function setClickedItem(id) {
     setClicked(id);
   }
-  // console.log(loggedInUser);
   axios.defaults.headers.common["x-auth-token"] = `${loggedInUser}`;
 
   useEffect(() => {
     async function getAllFavourites() {
       try {
         const res = await axios.get("http://localhost:8080/api/podcast/like");
-        // console.log(res.data.data);
         setUserFavourites(res.data.data);
       } catch (err) {
         console.log(err);
@@ -79,6 +36,23 @@ function SecondPage({ loggedInUser, setLoggedInUser }) {
     getAllFavourites();
   }, []);
 
+  // User Settings
+  useEffect(() => {
+    async function getAllSettings() {
+      try {
+        const res = await axios.get(
+          `http://localhost:8080/api/users/${loggedInID}`
+        );
+        console.log(res.data);
+        setUserSettings(res.data.data);
+      } catch (err) {
+        console.log(err);
+        navigate("/");
+      }
+    }
+    getAllSettings();
+  }, []);
+
   // Recommended Podcasts
   useEffect(() => {
     async function getAllRecommended() {
@@ -86,12 +60,10 @@ function SecondPage({ loggedInUser, setLoggedInUser }) {
         const res = await axios.get(
           "http://localhost:8080/api/podcast/recommended"
         );
-        console.log(res.data.data);
         setRecommendedPodcasts(res.data.data);
       } catch (err) {
         console.log(err);
       }
-      // console.log(res.data.data);
     }
     getAllRecommended();
   }, []);
@@ -100,18 +72,16 @@ function SecondPage({ loggedInUser, setLoggedInUser }) {
   useEffect(() => {
     async function getTop10Podcasts() {
       const res = await axios.get("http://localhost:8080/api/podcast/top10");
-      // console.log(res.data.data);
       setTop10Podcasts(res.data.data);
     }
     getTop10Podcasts();
   }, []);
 
-  // console.log("loggedIn:", loggedInUser);
   return (
     <>
       {loggedInUser !== "" ? "" : navigate("/", { replace: true })}
       <div className=" bg-gradient-to-r from-blue-950 to-neutral-950">
-        <NavBar loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />
+        <NavBar userSettings={userSettings} setClicked={setClicked} />
         <div className="flex">
           <div className="fixed h-screen">
             <LeftColumn clicked={clicked} setClickedItem={setClickedItem} />
@@ -128,6 +98,7 @@ function SecondPage({ loggedInUser, setLoggedInUser }) {
               setUserFavourites={setUserFavourites}
               recommendedPodcasts={recommendedPodcasts}
               top10Podcasts={top10Podcasts}
+              userSettings={userSettings}
             />
           </div>
         </div>

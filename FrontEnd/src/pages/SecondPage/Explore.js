@@ -164,7 +164,7 @@ function Explore({
                 />
               </div>
             ) : (
-              <div className="font-bold	text-xl text-slate-100 p-3 mx-3">
+              <div className="font-bold text-xl text-slate-100 p-3 mx-3">
                 Searching...
               </div>
             )}
@@ -173,7 +173,7 @@ function Explore({
       </div>
       <div className="font-bold	 text-lg  pl-3 mx-3">
         {gotExploreData ? (
-          <div className="font-bold	font-sans text-xl text-slate-100 p-3 mx-3">
+          <div className="font-bold text-xl text-slate-100 p-3 mx-3">
             <div>Take a look at some of the lastest Podcasts </div>
             <ExporeGrid
               exploreData={exploreData}

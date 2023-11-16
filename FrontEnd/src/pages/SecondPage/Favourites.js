@@ -13,13 +13,13 @@ function Favourites({
 }) {
   return (
     <div>
-      <div className="font-bold text-lg items-center pl-3 mx-3">
+      <div className="font-bold	 text-lg   items-center  pl-3 mx-3">
         {userFavourites?.length !== 0 ? (
           <div>
             <div className="flex ml-4 pb-4 font-bold text-4xl pl-3 mx-3 text-slate-100">
               Your Favourites
             </div>
-            <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-3">
+            <div className="grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-3">
               {userFavourites.map((data) => (
                 <Podcast
                   key={data._id}
@@ -42,7 +42,6 @@ function Favourites({
             </div>
           </div>
         )}
-        
         <Recommendation
           recommendedPodcasts={recommendedPodcasts}
           setCurrPlaying={setCurrPlaying}

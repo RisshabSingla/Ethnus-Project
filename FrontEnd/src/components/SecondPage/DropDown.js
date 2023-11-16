@@ -1,29 +1,14 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { Link, useNavigate } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import Settings from "../../pages/SecondPage/Setting";
+import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function DropDown() {
+export default function DropDown({ setClicked }) {
   const navigate = useNavigate();
-
-  const handleAccountSettings = () => {
-    // Navigate to the Account Settings page
-    navigate("  "); // Replace "/settings" with the actual path to your settings page
-  };
-
-  const handleSignOut = () => {
-    // Add any additional sign-out logic here if needed
-    // ...
-
-    // Navigate to the home page or any other page after signing out
-    navigate("./pages/SecondPage/LogOut");
-  };
-
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -48,47 +33,35 @@ export default function DropDown() {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <Link to='/Setting'
-                  // href="#"
-                 // onClick={handleAccountSettings}
+                <button
+                  onClick={() => setClicked("5")}
                   className={classNames(
                     active ? " text-orange-500" : "text-orange-100",
                     "block px-4 py-2 text-sm"
                   )}
                 >
                   Account settings
-                </Link>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? " text-orange-500" : "text-orange-100",
-                    "block px-4 py-2 text-sm"
-                  )}
-                >
-                  Support
-                </a>
+                </button>
               )}
             </Menu.Item>
 
-            <form method="POST" action="#" onSubmit={handleSignOut}>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? " text-orange-500" : "text-orange-100",
-                      "block w-full px-4 py-2 text-left text-sm"
-                    )}
-                  >
-                    Sign out
-                  </button>
-                )}
-              </Menu.Item>
-            </form>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  onClick={() => {
+                    navigate("/");
+                    window.location.reload();
+                  }}
+                  type="submit"
+                  className={classNames(
+                    active ? " text-orange-500" : "text-orange-100",
+                    "block w-full px-4 py-2 text-left text-sm"
+                  )}
+                >
+                  Sign out
+                </button>
+              )}
+            </Menu.Item>
           </div>
         </Menu.Items>
       </Transition>

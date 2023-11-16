@@ -2,7 +2,6 @@ import Home from "../../pages/SecondPage/Home";
 import Explore from "../../pages/SecondPage/Explore";
 import Favourites from "../../pages/SecondPage/Favourites";
 import Setting from "../../pages/SecondPage/Setting";
-import Subscribe from "../../pages/SecondPage/Subscribe";
 import LogOut from "../../pages/SecondPage/LogOut";
 import Top10Charts from "./Top10Charts";
 
@@ -17,6 +16,7 @@ function RightColumn({
   setUserFavourites,
   recommendedPodcasts,
   top10Podcasts,
+  userSettings,
 }) {
   return (
     <div className="pl-[166px] lg:pl-[208px]">
@@ -63,8 +63,8 @@ function RightColumn({
         ) : (
           ""
         )}
-        {current === "5" ? <Setting /> : ""}
-        {current === "6" ? <Subscribe /> : ""}
+        {current === "5" ? <Setting userSettings={userSettings} /> : ""}
+        {/* {current === "6" ? <Subscribe /> : ""} */}
         {current === "7" ? <LogOut /> : ""}
       </div>
     </div>

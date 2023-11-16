@@ -40,7 +40,7 @@ function Home({
               ) : (
                 <div>
                   <div>
-                    <div className="flex ml-4 pb-4 font-bold text-4xl pl-3 mx-3 text-slate-100">
+                    <div className="flex ml-4 pb-4 font-bold	 text-4xl pl-3 mx-3 text-slate-100">
                       Your Favourites
                     </div>
                     <div className="grid sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-3">
@@ -85,7 +85,6 @@ function Home({
       </div>
     </div>
   );
-  
 }
 
 export default Home;

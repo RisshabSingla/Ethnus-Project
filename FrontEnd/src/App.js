@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
 import Sign from "./pages/SignUpPage";
@@ -7,14 +7,20 @@ import SecondPage from "./pages/SecondPage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState("");
+  const [loggedInID, setLoggedInID] = useState("");
   // console.log(loggedInUser);
   return (
     <div className="App">
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           <Route
             path="/"
-            element={<LoginPage setLoggedInUser={setLoggedInUser} />}
+            element={
+              <LoginPage
+                setLoggedInUser={setLoggedInUser}
+                setLoggedInID={setLoggedInID}
+              />
+            }
           />
           <Route path="/signup" element={<Sign />} />
           <Route
@@ -23,11 +29,12 @@ function App() {
               <SecondPage
                 setLoggedInUser={setLoggedInUser}
                 loggedInUser={loggedInUser}
+                loggedInID={loggedInID}
               />
             }
           />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 }

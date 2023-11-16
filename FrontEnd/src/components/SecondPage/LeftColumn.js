@@ -1,4 +1,3 @@
-import Logo from "./Logo";
 import LeftMain from "./LeftMain";
 import ColumnItem from "./ColumnItem";
 
@@ -6,7 +5,7 @@ function LeftColumn({ clicked, setClickedItem }) {
   return (
     <div>
       <div className="p-3">
-        <div className="font-bold	 text-lg  text-slate-50 text-center ">
+        <div className="font-bold text-lg  text-slate-50 text-center ">
           Menu
         </div>
       </div>
