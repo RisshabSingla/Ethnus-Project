@@ -6,13 +6,13 @@ function LeftColumn({ clicked, setClickedItem }) {
   return (
     <div>
       <div className="p-3">
-        <div className="font-bold	font-serif text-lg  text-slate-50 text-center ">
+        <div className="font-bold	 text-lg  text-slate-50 text-center ">
           Menu
         </div>
       </div>
       <LeftMain clicked={clicked} setClickedItem={setClickedItem} />
       <div className="p-3">
-        <div className="font-bold	font-serif text-lg  text-slate-50 text-center p-3">
+        <div className="font-bold text-lg  text-slate-50 text-center p-3">
           General
         </div>
       </div>
@@ -26,14 +26,14 @@ function LeftColumn({ clicked, setClickedItem }) {
         currentClicked={clicked}
       />
 
-      <ColumnItem
+      {/* <ColumnItem
         id="6"
         imageSrc="./images/subscribe/1.svg"
         ItemName="Subscribe"
         onClickImage="./images/subscribe/2.svg"
         setClicked={setClickedItem}
         currentClicked={clicked}
-      />
+      /> */}
 
       <ColumnItem
         id="7"

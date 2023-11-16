@@ -1,5 +1,6 @@
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import useScreenSize from "../useScreenSize";
+
 function DisplayTrack({
   currentTrack,
   audioRef,
@@ -8,13 +9,13 @@ function DisplayTrack({
   handleNext,
 }) {
   const onLoadedMetadata = () => {
-    // console.log(audioRef.current.duration);
     const seconds = audioRef.current.duration;
     setDuration(seconds);
     progressBarRef.current.max = seconds;
   };
+
   const screenSize = useScreenSize();
-  // console.log(screenSize);
+
   return (
     <div>
       <audio
@@ -28,7 +29,7 @@ function DisplayTrack({
           {currentTrack?.img ? (
             <img
               className="rounded-2xl"
-              width="50px"
+              width="75px"
               src={currentTrack.img}
               alt="audio avatar"
             />
@@ -41,16 +42,29 @@ function DisplayTrack({
           )}
         </div>
 
-        {screenSize.width > 900 ? (
+        {screenSize.width > 1000 ? (
           <div>
-            <div className="text">
-              <p className="title">
-                {currentTrack?.name.slice(
-                  0,
-                  Math.min(currentTrack.name.length, 15)
-                )}
-              </p>
+            <div className="text font-sans font-thin">
+              {currentTrack?.name.length > 15 ? (
+                <marquee behavior="scroll" direction="left">
+                  
+                  <p className="title" style={{ fontWeight: "500" }}>
+                    {currentTrack?.name}
+                  </p>
+                
+                </marquee>
+              ) : (
+                
+                <p className="title" >
+                  
+                  {currentTrack?.name.slice(0, Math.min(currentTrack.name.length, 15))}
+                </p>
+            
+              )}
+           
               <p>{currentTrack?.artist}</p>
+            
+              
             </div>
           </div>
         ) : (

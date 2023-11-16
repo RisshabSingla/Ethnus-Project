@@ -46,7 +46,7 @@ function QueryGrid({
           />
         ))
       ) : (
-        <div className="w-full font-bold	font-serif text-xl text-slate-100 p-3 mx-3">
+        <div className="w-full font-bold text-xl text-slate-100 p-3 mx-3">
           Sorry No PodCast Found
         </div>
       )}
@@ -142,14 +142,14 @@ function Explore({
       <div className="pl-7">
         <Search query={query} setQuery={setQuery} setFound={setFound} />
       </div>
-      <div className="font-bold	font-serif text-lg  pl-3 mx-3">
+      <div className="font-bold text-lg  pl-3 mx-3">
         {query === "" ? (
           ""
         ) : (
           <div>
             {found ? (
               <div>
-                <div className="font-bold	font-serif text-xl text-slate-100 p-3 mx-3">
+                <div className="font-bold text-xl text-slate-100 p-3 mx-3">
                   Found these results
                 </div>
                 <QueryGrid
@@ -164,16 +164,16 @@ function Explore({
                 />
               </div>
             ) : (
-              <div className="font-bold	font-serif text-xl text-slate-100 p-3 mx-3">
+              <div className="font-bold	text-xl text-slate-100 p-3 mx-3">
                 Searching...
               </div>
             )}
           </div>
         )}
       </div>
-      <div className="font-bold	font-serif text-lg  pl-3 mx-3">
+      <div className="font-bold	 text-lg  pl-3 mx-3">
         {gotExploreData ? (
-          <div className="font-bold	font-serif text-xl text-slate-100 p-3 mx-3">
+          <div className="font-bold	font-sans text-xl text-slate-100 p-3 mx-3">
             <div>Take a look at some of the lastest Podcasts </div>
             <ExporeGrid
               exploreData={exploreData}

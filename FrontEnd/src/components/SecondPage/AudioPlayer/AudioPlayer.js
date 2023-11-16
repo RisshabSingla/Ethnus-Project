@@ -34,7 +34,7 @@ function AudioPlayer({
   };
 
   return (
-    <div className="audio-player w-screen">
+    <div className="audio-player w-screen backdrop-filter backdrop-blur-md">
       <div className="px-3">
         <div className="flex  w-full flex-row">
           <div className="basis-1/12 md:basis-1/5 pt-4">
