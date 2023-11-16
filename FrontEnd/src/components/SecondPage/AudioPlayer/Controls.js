@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-
 import {
   IoPlayBackSharp,
   IoPlayForwardSharp,
@@ -11,7 +10,6 @@ import {
   IoVolumeMute,
   IoVolumeLow,
 } from "react-icons/io5";
-
 import useScreenSize from "../useScreenSize";
 
 function Controls({
@@ -36,7 +34,6 @@ function Controls({
   const playAnimationRef = useRef();
   const screenSize = useScreenSize();
   const repeat = useCallback(() => {
-    // console.log("run");
     const currentTime = audioRef.current.currentTime;
     setTimeProgress(currentTime);
     progressBarRef.current.value = currentTime;
@@ -86,26 +83,26 @@ function Controls({
   return (
     <div className="controls-wrapper">
       <div className="controls">
-        <button onClick={handlePrevious}>
+        <button className="text-gray-400 hover:text-white-500 transform hover:scale-110 transition-transform duration-300" onClick={handlePrevious} title="Previous Track">
           <IoPlaySkipBackSharp />
         </button>
-        <button onClick={skipBackward}>
+        <button className="text-gray-500 hover:text-white-500 transform hover:scale-110 transition-transform duration-300" onClick={skipBackward} title="Skip Backwards 15s">
           <IoPlayBackSharp />
         </button>
 
-        <button onClick={togglePlayPause}>
+        <button className="text-white-500 hover:text-white-500 transform hover:scale-110 transition-transform duration-300" onClick={togglePlayPause} title={isPlaying ? "Pause" : "Play"}>
           {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
         </button>
-        <button onClick={skipForward}>
+        <button className="text-gray-500 hover:text-white-500 transform hover:scale-110 transition-transform duration-300" onClick={skipForward} title="Skip Forward 15s">
           <IoPlayForwardSharp />
         </button>
-        <button onClick={handleNext}>
+        <button className="text-gray-400 hover:text-white-500 transform hover:scale-110 transition-transform duration-300" onClick={handleNext} title="Next Track">
           <IoPlaySkipForwardSharp />
         </button>
       </div>
 
       <div className="volume">
-        <button onClick={() => setMuteVolume((prev) => !prev)}>
+        <button className="text-white-500 transform hover:scale-110 transition-transform duration-300"  onClick={() => setMuteVolume((prev) => !prev)} title={muteVolume || volume < 5 ? "Mute" : volume < 40 ? "Low Volume" : "High Volume"}>
           {muteVolume || volume < 5 ? (
             <IoVolumeMute />
           ) : volume < 40 ? (
@@ -123,6 +120,10 @@ function Controls({
             max={100}
             value={volume}
             onChange={(e) => setVolume(e.target.value)}
+            style={{
+              background: `linear-gradient(to top, #32CD32 ${(volume / 100) * 100}%, #fff 0%)`,
+            }}
+            title={`Volume: ${volume}`}
           />
         ) : (
           ""

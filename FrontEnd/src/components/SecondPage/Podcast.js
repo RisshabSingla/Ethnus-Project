@@ -18,6 +18,8 @@ function Podcast({
       ? false
       : true
   );
+  const [favouriteAnimation, setFavouriteAnimation] = useState(false);
+
   function handleQueueAdd() {
     setAddQueue(addQueue ? false : true);
     if (!addQueue) {
@@ -27,6 +29,7 @@ function Podcast({
       setCurrPlaying(currPlaying.filter((t) => t !== track));
     }
   }
+
   function handleFrontAdd() {
     setAddFront(addFront ? false : true);
     if (!addFront) {
@@ -44,9 +47,11 @@ function Podcast({
   }
 
   function handleFavouriteAdd(track) {
-    setAddFavourite(addFavourite ? false : true);
-    // console.log(track);
-    // console.log(track._id);
+    setAddFavourite((prev) => !prev);
+
+    // Add animation class on click
+    setFavouriteAnimation(true);
+
     axios
       .put(`http://localhost:8080/api/podcast/like/${track._id}`)
       .then(() => {
@@ -56,11 +61,16 @@ function Podcast({
               userFavourites?.filter((data) => data._id !== track._id)
             );
       });
+
+    // Reset animation class after a short delay (adjust duration as needed)
+    setTimeout(() => {
+      setFavouriteAnimation(false);
+    }, 1000);
   }
 
   return (
     <>
-      <div className=" p-4 flex-shrink-0 font-bold font-serif text-lg border rounded-3xl text-left m-3 h-full w-full ">
+      <div className="p-4 flex-shrink-0 font-bold text-lg border border-gray-800 rounded-3xl text-left m-3 h-full w-full bg-gradient-to-tr from-black to-transparent">
         <img
           className="rounded-3xl border-2 m-3 min-w-[150px] min-h-[150px] max-h-[150px]"
           width="150px"
@@ -85,14 +95,19 @@ function Podcast({
         </div>
 
         <div className="flex justify-center">
-          <button className="px-2" onClick={handleFrontAdd}>
+          <button
+            onClick={handleFrontAdd}
+            className="px-2"
+          >
             {addFront ? (
               <img width="50px" src="./images/play/3.svg" alt="" />
             ) : (
               <img width="50px" src="./images/play/1.svg" alt="" />
             )}
           </button>
-          <button onClick={handleQueueAdd}>
+          <button
+            onClick={handleQueueAdd}
+          >
             {addQueue ? (
               <img width="50px" src="./images/queue/4.svg" alt="" />
             ) : (
@@ -100,10 +115,8 @@ function Podcast({
             )}
           </button>
           <button
-            onClick={() => {
-              handleFavouriteAdd(track);
-              // console.log(track);
-            }}
+            onClick={() => handleFavouriteAdd(track)}
+            className={`px-2 ${favouriteAnimation ? 'animate-ping' : ''}`}
           >
             {addFavourite ? (
               <img width="50px" src="./images/favourite/2.svg" alt="" />

@@ -1,7 +1,7 @@
 import Carousel from "react-elastic-carousel";
 import Podcast from "./Podcast";
 import "./Top10Charts.css";
-
+import axios from "axios";
 // const Alltracks = [
 //   {
 //     name: "Apna Bale Le",
@@ -56,8 +56,10 @@ function Top10Charts({
   setIsPlaying,
   userFavourites,
   setUserFavourites,
-  top10Podcasts = [],
+  top10Podcasts,
 }) {
+
+
   // sm:min-w-[300px] md:min-w-[500px] lg:min-w-[700px] xl:min-w-[1000px]
   // sm:min-w-[300px] min-[730px]:min-w-[500px]  min-[920px]:min-w-[700px] xl:min-w-[1000px]
   return (
@@ -73,7 +75,7 @@ function Top10Charts({
           { width: 1750, itemsToShow: 8 },
         ]}
       >
-        {top10Podcasts.map((data) => (
+        {top10Podcasts.length > 0 && top10Podcasts.map((data)  => (
           <Podcast
             key={data._id}
             track={data}
@@ -102,6 +104,8 @@ function Top10Charts({
       </Carousel>
     </div>
   );
+  //console.log("Top 10 Podcasts in Top10Charts component:", top10Podcasts);
 }
+  
 
 export default Top10Charts;
