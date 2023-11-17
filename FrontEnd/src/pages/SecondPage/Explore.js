@@ -104,7 +104,7 @@ function Explore({
     // get all podcast
     async function getExploreData() {
       const res = await axios.get(
-        "https://ethnus-project-backend.vercel.app/api/podcast"
+        "http://ethnus-project-backend-3ou9.onrender.com/api/podcast"
       );
       setExploreData(() => {
         setGotExploreData(true);
@@ -119,7 +119,7 @@ function Explore({
     function () {
       async function FindPodcasts() {
         const res = await axios.get(
-          `https://ethnus-project-backend.vercel.app/api/?search=${query}`
+          `http://ethnus-project-backend-3ou9.onrender.com/api/?search=${query}`
         );
         setQueryData(() => {
           setFound(true);

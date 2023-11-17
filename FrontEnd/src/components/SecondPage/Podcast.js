@@ -48,7 +48,7 @@ function Podcast({
     setFavouriteAnimation(true);
     axios
       .put(
-        `https://ethnus-project-backend.vercel.app/api/podcast/like/${track._id}`
+        `http://ethnus-project-backend-3ou9.onrender.com/api/podcast/like/${track._id}`
       )
       .then(() => {
         !addFavourite
