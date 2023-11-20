@@ -7,7 +7,7 @@ import axios from "axios";
 function Search({ query, setQuery, setFound }) {
   return (
     <input
-      className="search"
+      className="search text-orange-100"
       type="text"
       placeholder="Search Podcasts..."
       value={query}
@@ -46,7 +46,7 @@ function QueryGrid({
           />
         ))
       ) : (
-        <div className="w-full font-bold text-xl text-slate-100 p-3 mx-3">
+        <div className="w-full font-bold text-xl text-orange-100 p-3 mx-3">
           Sorry No PodCast Found
         </div>
       )}
@@ -151,7 +151,7 @@ function Explore({
           <div>
             {found ? (
               <div>
-                <div className="font-bold text-xl text-slate-100 p-3 mx-3">
+                <div className="font-bold text-xl text-orange-100 p-3 mx-3">
                   Found these results
                 </div>
                 <QueryGrid
@@ -166,7 +166,7 @@ function Explore({
                 />
               </div>
             ) : (
-              <div className="font-bold text-xl text-slate-100 p-3 mx-3">
+              <div className="font-bold text-xl text-orange-100 p-3 mx-3">
                 Searching...
               </div>
             )}
@@ -176,7 +176,9 @@ function Explore({
       <div className="font-bold	 text-lg  pl-3 mx-3">
         {gotExploreData ? (
           <div className="font-bold text-xl text-slate-100 p-3 mx-3">
-            <div>Take a look at some of the lastest Podcasts </div>
+            <div className="text-orange-100">
+              Take a look at some of the lastest Podcasts{" "}
+            </div>
             <ExporeGrid
               exploreData={exploreData}
               setCurrPlaying={setCurrPlaying}
@@ -212,6 +214,26 @@ function Explore({
         )}
 
         <div className="invisible">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           ac est tellus. Sed ultrices mi ut nisl mollis Lorem ipsum dolor sit
         </div>

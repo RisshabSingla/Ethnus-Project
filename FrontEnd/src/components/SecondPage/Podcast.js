@@ -64,7 +64,7 @@ function Podcast({
 
   return (
     <>
-      <div className="p-4 flex-shrink-0 font-bold text-lg border rounded-3xl text-left m-3 h-full w-full border-gray-800 bg-gradient-to-tr from-black to-transparent">
+      <div className="p-4 flex-shrink-0 font-bold text-lg border rounded-3xl text-left m-3 h-full w-full  bg-gradient-to-tr from-black to-transparent border-2 ">
         <img
           className="rounded-3xl border-2 m-3 min-w-[150px] min-h-[150px] max-h-[150px]"
           width="150px"
@@ -73,14 +73,16 @@ function Podcast({
           alt=""
         />
 
-        <div className="flex justify-center text-slate-100">
-          {track?.name
-            ? track.name
-                .slice(0, Math.min(track.name.length, 20))
-                .padEnd(20, " ")
-            : "Title"}
+        <div className="flex justify-center text-orange-100">
+          <marquee>
+            {track?.name
+              ? track.name
+                  .slice(0, Math.min(track.name.length, 20))
+                  .padEnd(20, " ")
+              : "Title"}
+          </marquee>
         </div>
-        <div className="flex justify-center text-slate-300">
+        <div className="flex justify-center text-orange-200">
           {track?.artist
             ? track.artist
                 .slice(0, Math.min(track.artist.length, 15))

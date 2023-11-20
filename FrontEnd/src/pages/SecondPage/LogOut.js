@@ -32,7 +32,7 @@ function LogOut() {
       {!isLogoutConfirmed && <div>{/* Your other content here */}</div>}
       <button
         onClick={handleLogout}
-        className="bg-red-500 text-white font-semibold py-2 px-4 focus:outline-none"
+        className="rounded-lg bg-red-500 text-white font-semibold py-2 px-4 focus:outline-none "
       >
         Logout
       </button>

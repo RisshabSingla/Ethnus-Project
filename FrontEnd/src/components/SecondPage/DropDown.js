@@ -31,7 +31,7 @@ export default function DropDown({ setClicked }) {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-neutral-950 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-orange-100">
           <div className="py-1">
-            <Menu.Item>
+            {/* <Menu.Item>
               {({ active }) => (
                 <button
                   onClick={() => setClicked("5")}
@@ -43,7 +43,7 @@ export default function DropDown({ setClicked }) {
                   Account settings
                 </button>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
 
             <Menu.Item>
               {({ active }) => (

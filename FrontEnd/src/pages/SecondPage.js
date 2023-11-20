@@ -84,7 +84,7 @@ function SecondPage({ loggedInUser, loggedInID }) {
   return (
     <>
       {loggedInUser !== "" ? "" : navigate("/", { replace: true })}
-      <div className=" bg-gradient-to-r from-blue-950 to-neutral-950">
+      <div className="bg-gradient-to-r from-blue-950 to-neutral-950">
         <NavBar userSettings={userSettings} setClicked={setClicked} />
         <div className="flex">
           <div className="fixed h-screen">

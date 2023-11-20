@@ -4,8 +4,9 @@
 
 
 .rec.rec-slider-container {
-    background-color: #C4C4C4;
+    /* background-color: #C4C4C4; */
     /* opacity: 75%; */
+    /* border: 2px solid white; */
     border-radius: 2.5rem;
 }
 

@@ -20,18 +20,18 @@ function ColumnItem({
     console.log(`${ItemName} Pressed`);
     const className = divClassName;
     setDivClassName(className);
-    setSvgSource(onClickImage);
+    // setSvgSource(onClickImage);
   }
   useEffect(() => {
     if (currentClicked !== id) {
-      setSvgSource(imageSrc);
+      // setSvgSource(imageSrc);
       setDivClassName(originalClassName);
       setTextColor("text-orange-100");
     } else {
-      setSvgSource(onClickImage);
-      const className = originalClassName + " bg-blue-800";
+      // setSvgSource(onClickImage);
+      const className = originalClassName + " bg-orange-500";
       setDivClassName(className);
-      setTextColor("text-orange-500");
+      setTextColor("text-white");
     }
   }, [currentClicked]);
 
