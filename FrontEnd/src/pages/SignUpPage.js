@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import lg from "../imags/Logo.png";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -12,10 +12,37 @@ import t6 from "../imags/tweet 6.png";
 import lin from "../imags/linkedin.png";
 import ins from "../imags/instagram.png";
 import flogo from "../imags/flogo.png";
+import Fp from "../imags/firstPage.png";
+import Fp1 from "../imags/firstPage1.jpg";
+import Fp2 from "../imags/firstPage2.jpg";
+import Fp3 from "../imags/firstPage3.jpeg";
+import Fp4 from "../imags/fp4.jpg";
 import { Link as RouterLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
+
+const PhotoSlider = ({ photos }) => {
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+  }, [currentPhotoIndex, photos.length]);
+
+  return (
+    <div>
+      <img
+        className=" w-5/6 rounded-2xl  h-48"
+        src={photos[currentPhotoIndex]}
+        alt={`Photo ${currentPhotoIndex + 1}`}
+      />
+    </div>
+  );
+};
 
 function SignUp() {
   const navigate = useNavigate();
@@ -98,7 +125,7 @@ function SignUp() {
           <li>
             <button className="bg-red-400 hover:bg-orange-700 rounded-xl text-white font-extrabold mr-2 p-1 text-center text-md px-8  ml-2 hover:scale-110 duration-200 cursor-pointer hover:text-cyan-300">
               <Link to="Login" smooth duration={500}>
-                Login
+                SignUp
               </Link>
             </button>
           </li>
@@ -176,7 +203,12 @@ function SignUp() {
             <p className="text-xl pl-10 text-center ">
               Your Ultimate Podcast Destination!
             </p>
-            <p class="mt-20 text-2xl text-orange ml-10 text-center">
+            <center>
+              <div className="w-2/3 mt-10">
+                <PhotoSlider photos={[Fp, Fp1, Fp2, Fp3, Fp4]} />
+              </div>
+            </center>
+            <p class="mt-10 text-2xl text-orange ml-10 text-center">
               Experience the future of audio entertainment with ListenUp.
             </p>
           </div>
@@ -473,7 +505,7 @@ function SignUp() {
           </div>
 
           <p className=" text-2xl font-bold mt-2">Creators </p>
-          <div className="grid grid-cols-2 md:grid-cols-5 mt-5">
+          <div className="grid grid-cols-5 mt-5">
             <div className="text-orange-300 text-xl p-4 font-bold flex flex-col items-center">
               Ayush Sharma
               <div className="flex flex-row">

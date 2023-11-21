@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import lg from "../imags/Logo.png";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -13,10 +13,36 @@ import lin from "../imags/linkedin.png";
 import ins from "../imags/instagram.png";
 import flogo from "../imags/flogo.png";
 import { Link as RouterLink } from "react-router-dom";
-
+import Fp from "../imags/firstPage.png";
+import Fp1 from "../imags/firstPage1.jpg";
+import Fp2 from "../imags/firstPage2.jpg";
+import Fp3 from "../imags/firstPage3.jpeg";
+import Fp4 from "../imags/fp4.jpg";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
+
+const PhotoSlider = ({ photos }) => {
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+  }, [currentPhotoIndex, photos.length]);
+
+  return (
+    <div>
+      <img
+        className=" w-5/6 rounded-2xl  h-48"
+        src={photos[currentPhotoIndex]}
+        alt={`Photo ${currentPhotoIndex + 1}`}
+      />
+    </div>
+  );
+};
 
 function LoginPage({ setLoggedInUser, setLoggedInID }) {
   const navigate = useNavigate();
@@ -165,13 +191,18 @@ function LoginPage({ setLoggedInUser, setLoggedInID }) {
       >
         <div className="md:flex md:justify-between ">
           <div className="md:w-1/2 md:h-1/2 w-full h-1/2">
-            <p className="pl-10 pr-10 pb-10 text-5xl font-bold text-center">
+            <p className="pl-10 pr-10 pb-8 text-5xl font-bold text-center">
               Welcome to ListenUp
             </p>
             <p className="text-xl pl-10 text-center ">
               Your Ultimate Podcast Destination!
             </p>
-            <p className="mt-20 text-2xl text-orange ml-10 text-center">
+            <center>
+              <div className="w-2/3 mt-10">
+                <PhotoSlider photos={[Fp, Fp1, Fp2, Fp3, Fp4]} />
+              </div>
+            </center>
+            <p className="mt-10 text-2xl text-orange ml-10 text-center">
               Experience the future of audio entertainment with ListenUp.
             </p>
           </div>
@@ -179,7 +210,7 @@ function LoginPage({ setLoggedInUser, setLoggedInID }) {
             name="Login"
             className=" sm:flex  sm:items-center sm:justify-center  md:m-0 mr-10 ml-10 pl-8 mt-10 md:pr-24"
           >
-            <div className=" bg-gradient-to-l from-blue-950 to bg-neutral-950  pl-8 pr-8 rounded-xl shadow-cyan-200 shadow-md w-96">
+            <div className=" bg-gradient-to-l from-blue-950 to bg-neutral-950  pl-8 pr-8 rounded-xl shadow-cyan-200 shadow-md   w-96  lg:w-96">
               <h1 className="text-3xl font-bold mb-4 pt-4 pb-8 text-center">
                 Login
               </h1>
@@ -424,7 +455,7 @@ function LoginPage({ setLoggedInUser, setLoggedInID }) {
           </div>
 
           <p className=" text-2xl font-bold mt-2">Creators </p>
-          <div className="grid grid-cols-2 md:grid-cols-5 mt-5">
+          <div className="grid grid-cols-5 mt-5">
             <div className="text-orange-300 text-xl p-4 font-bold flex flex-col items-center">
               Ayush Sharma
               <div className="flex flex-row">

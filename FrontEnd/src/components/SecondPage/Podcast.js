@@ -74,13 +74,7 @@ function Podcast({
         />
 
         <div className="flex justify-center text-orange-100">
-          <marquee>
-            {track?.name
-              ? track.name
-                  .slice(0, Math.min(track.name.length, 20))
-                  .padEnd(20, " ")
-              : "Title"}
-          </marquee>
+          <marquee>{track?.name ? track.name : "Title"}</marquee>
         </div>
         <div className="flex justify-center text-orange-200">
           {track?.artist
